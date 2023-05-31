@@ -8,15 +8,14 @@ export const MainView = () => {
     const [selectedMovie, setSelectedMovie] = useState(null);
 
     useEffect(() => {
-      fetch('https://myflix404.herokuapp.com/movies')
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          const moviesFromApi = data.map((movie) => {
-            return {
-              _id: movie.id,
+      const fetchMovieData = async () => {
+        const fetchedData = await fetch('https://myflix404.herokuapp.com/movies');
+        const data = await fetchedData.json();
+        const moviesFromAPI = data.map((movie) => {
+          return {
+              id: movie._id,
               Title: movie.Title,
-              ImagePath: movie.ImageURL,
+              ImagePath: movie.ImagePath,
               Description: movie.Description,
               Genre: {
                 Name: movie.Genre.Name
@@ -25,10 +24,12 @@ export const MainView = () => {
                 Name: movie.Director.Name
               },
               Featured: movie.Featured
+              
             };
           });
-          setMovies(moviesFromApi);
-        });
+          setMovies(moviesFromAPI);
+};
+        fetchMovieData();
     }, []);
 
     // Render the MovieView component if a movie is selected

@@ -15,14 +15,16 @@ export const MovieCard = ({ movie, onMovieClick }) => {
 //PropTypes conditions for return MovieCard statement in main-view.jsx
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    _id: PropTypes.string.isRequired, // ID of the movie (string)
-    Title: PropTypes.string.isRequired, // Title of the movie (string)
-    ImagePath: PropTypes.string.isRequired, // Path to the movie image (string)
-    Director: PropTypes.string.isRequired, // Director's name (string)
-    Description: PropTypes.string.isRequired, // Description of the movie (string)
-    Year: PropTypes.number.isRequired, // Year of release (number)
-    Genres: PropTypes.arrayOf(PropTypes.string).isRequired, // Array of genres (array of strings)
-    Featured: PropTypes.bool.isRequired, // Flag indicating if the movie is featured (boolean)
+    _id: PropTypes.string.isRequired,
+    Title: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
+    Director: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+    }).isRequired,
+    Description: PropTypes.string.isRequired,
+    Year: PropTypes.number.isRequired,
+    Genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    Featured: PropTypes.bool.isRequired,
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired, // Event handler for when the movie is clicked (function)
+  onMovieClick: PropTypes.func.isRequired,
 };

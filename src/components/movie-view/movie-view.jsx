@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 export const MovieView = ({ movie, onBackClick }) => {
     return (
         <div>
-            {/* Display the movie's image using the ImageURL */}
+            {/* Display the movie's image using the ImagePath */}
             <div>
-                <img src={movie.ImageURL} />
+                <img src={movie.ImagePath} />
             </div>
 
             {/* Display the movie's title */}
@@ -20,22 +20,16 @@ export const MovieView = ({ movie, onBackClick }) => {
                 <span>{movie.Description}</span>
             </div>
 
-            {/* Display the movie's year */}
-            <div>
-                <span>Year: </span>
-                <span>{movie.Year}</span>
-            </div>
-
             {/* Display the movie's genre */}
             <div>
                 <span>Genre: </span>
-                <span>{movie.Genre}</span>
+                <span>{movie.Genre.Name}</span>
             </div>
 
             {/* Display the movie's director */}
             <div>
                 <span>Director: </span>
-                <span>{movie.Director}</span>
+                <span>{movie.Director.Name}</span>
             </div>
 
             {/* Create a button for going back, calling the onBackClick function when clicked */}
@@ -55,7 +49,9 @@ MovieView.propTypes = {
       Director: PropTypes.shape({
         Name: PropTypes.string.isRequired
       }),
-      Featured: PropTypes.string
+      Featured: PropTypes.bool.isRequired
     }).isRequired,
     onBackClick: PropTypes.func.isRequired
   };
+
+  export default MovieView;
