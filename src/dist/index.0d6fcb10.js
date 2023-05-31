@@ -27174,7 +27174,7 @@ const MainView = ()=>{
                     Director: {
                         Name: movie.Director.Name
                     },
-                    Featured: movie.Featured.toString()
+                    Featured: movie.Featured
                 };
             });
             setMovies(moviesFromApi);
@@ -27204,7 +27204,7 @@ const MainView = ()=>{
                 onMovieClick: (newSelectedMovie)=>{
                     setSelectedMovie(newSelectedMovie);
                 }
-            }, movie.id, false, {
+            }, movie._id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
                 lineNumber: 50,
                 columnNumber: 11
@@ -27254,7 +27254,14 @@ _c = MovieCard;
 //PropTypes conditions for return MovieCard statement in main-view.jsx
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
-        Title: (0, _propTypesDefault.default).string.isRequired
+        _id: (0, _propTypesDefault.default).string.isRequired,
+        Title: (0, _propTypesDefault.default).string.isRequired,
+        ImagePath: (0, _propTypesDefault.default).string.isRequired,
+        Director: (0, _propTypesDefault.default).string.isRequired,
+        Description: (0, _propTypesDefault.default).string.isRequired,
+        Year: (0, _propTypesDefault.default).number.isRequired,
+        Genres: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).string).isRequired,
+        Featured: (0, _propTypesDefault.default).bool.isRequired
     }).isRequired,
     onMovieClick: (0, _propTypesDefault.default).func.isRequired
 };
@@ -28342,7 +28349,7 @@ MovieView.propTypes = {
         Director: (0, _propTypesDefault.default).shape({
             Name: (0, _propTypesDefault.default).string.isRequired
         }),
-        Featured: (0, _propTypesDefault.default).string.isRequired
+        Featured: (0, _propTypesDefault.default).string
     }).isRequired,
     onBackClick: (0, _propTypesDefault.default).func.isRequired
 };

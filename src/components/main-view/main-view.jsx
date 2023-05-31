@@ -24,7 +24,7 @@ export const MainView = () => {
               Director: {
                 Name: movie.Director.Name
               },
-              Featured: movie.Featured.toString()
+              Featured: movie.Featured
             };
           });
           setMovies(moviesFromApi);
@@ -48,7 +48,7 @@ export const MainView = () => {
       <div>
         {movies.map((movie) => (
           <MovieCard
-            key={movie.id}
+            key={movie._id}
             movie={movie}
             onMovieClick={(newSelectedMovie) => {
               setSelectedMovie(newSelectedMovie);

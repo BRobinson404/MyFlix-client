@@ -55,7 +55,7 @@ MovieView.propTypes = {
       Director: PropTypes.shape({
         Name: PropTypes.string.isRequired
       }),
-      Featured: PropTypes.string.isRequired
+      Featured: PropTypes.string
     }).isRequired,
     onBackClick: PropTypes.func.isRequired
   };
