@@ -1,16 +1,21 @@
 import PropTypes from 'prop-types';
+import React from 'react';
+import { Card } from 'react-bootstrap';
+
 /* This component can be used to render a list of movie cards and handle user interactions with them.*/
 export const MovieCard = ({ movie, onMovieClick }) => {
-    return (
-      <div
-        onClick={() => {
-          onMovieClick(movie);
-        }}
-      >
-        {movie.Title}
-      </div>
-    );
-  };
+  return (
+    <Card className="movie-card" onClick={() => onMovieClick(movie)}>
+      <Card.Img
+        variant="top"
+        src={movie.ImagePath}
+      />
+      <Card.Body>
+        <Card.Title className='card-title'>{movie.Title}</Card.Title>
+      </Card.Body>
+    </Card>
+  );
+};
 
 //PropTypes conditions for return MovieCard statement in main-view.jsx
 MovieCard.propTypes = {
