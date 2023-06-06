@@ -27379,8 +27379,8 @@ const MainView = ()=>{
                     columnNumber: 11
                 }, undefined) : // Render movie cards
                 movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                        className: "mb-4",
-                        md: 6,
+                        className: "md-4",
+                        md: 4,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                             movie: movie,
                             onMovieClick: setSelectedMovie
