@@ -1,0 +1,38 @@
+.movie-card {
+    width: 100%;
+  }
+  
+  .movie-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  * {
+    background-color: #202020;
+    color: white;
+  }
+  
+  .movie-card:hover {
+    box-shadow: 0 0 20px #007bff;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .movie-card .card-title {
+    color: white;
+  }
+  
+  .MovieView {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    height: 100vh;
+  }
+  
+  .MovieView .row-title {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .MovieView .row-title span:first-child {
+    font-weight: bold;
+  }
