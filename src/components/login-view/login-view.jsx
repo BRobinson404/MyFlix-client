@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import { Row, Col } from 'react-bootstrap';
 
 export const LoginView = ({ onLoggedIn }) => {
   // Set up state variables for username and password
@@ -66,9 +68,17 @@ export const LoginView = ({ onLoggedIn }) => {
           required
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+      <Row>
+          <Col xs={{offset: 4}} className="mt-2">
+              <Button variant="primary" type="submit" className="align-self-center">Submit</Button>
+          </Col>
+          <Col xs={3}>
+              <Link to={`/signup`}>
+                  I don't have and account.
+              </Link>
+          </Col>
+          <Col xs={{offset: 2}}></Col>
+      </Row>
     </Form>
   );
 };

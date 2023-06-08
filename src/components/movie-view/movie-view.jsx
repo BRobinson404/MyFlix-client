@@ -1,71 +1,74 @@
-import PropTypes from 'prop-types';
-import { Row, Button } from 'react-bootstrap';
+import React from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { Row, Col, Button } from 'react-bootstrap';
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ storedUser, storedToken, movies, similarMovies }) => {
+  const { movieId } = useParams();
+
+  const movie = movies.find((movie) => movie._id === movieId);
+
   return (
-    <div className='MovieView'>
-      <Row>
-        {/* Display the movie's image using the imagePath */}
-        <div>
-          <img src={movie.ImagePath} className="img-fluid" alt="Movie Poster" />
-        </div>
-      </Row>
+    <div className="MovieView">
 
       <Row className="row-title">
         {/* Display the movie's title */}
-        <div>
+        <Col>
           <span>Title: </span>
           <span>{movie.Title}</span>
-        </div>
+        </Col>
       </Row>
 
       <Row className="row-title">
         {/* Display the movie's description */}
-        <div>
+        <Col>
           <span>Description: </span>
           <span>{movie.Descriptions}</span>
-        </div>
+        </Col>
       </Row>
 
       <Row className="row-title">
         {/* Display the movie's genre */}
-        <div>
+        <Col>
           <span>Genre: </span>
           <span>{movie.Genre.Name}</span>
-        </div>
+        </Col>
       </Row>
 
       <Row className="row-title">
         {/* Display the movie's director */}
-        <div>
+        <Col>
           <span>Director: </span>
           <span>{movie.Director.Name}</span>
-        </div>
+        </Col>
       </Row>
 
       <Row>
-          {/* Create a button for going back, calling the onBackClick function when clicked */}
-          <Button onClick={onBackClick} variant="primary">Back</Button>
+        {/* Create a button for going back, using the Link component */}
+        <Col>
+          <Link to="/" className="btn btn-primary">
+            Back
+          </Link>
+        </Col>
+      </Row>
+
+      <Row>
+        {/* Display the movie's image using the imagePath */}
+        <Col>
+          <img src={movie.ImagePath} className="img-fluid" alt="Movie Poster" />
+        </Col>
+      </Row>
+
+      <Row>
+        {/* Display the list of similar movies */}
+        <Col>
+          <h4>Similar Movies:</h4>
+          {similarMovies.map((similarMovie) => (
+            <Link key={similarMovie._id} to={`/movie/${similarMovie._id}`} className="similar-movie-link">
+              {similarMovie.Title}
+            </Link>
+          ))}
+        </Col>
       </Row>
     </div>
   );
 };
-
-
-MovieView.propTypes = {
-  movie: PropTypes.shape({
-    ImagePath: PropTypes.string.isRequired,
-    Title: PropTypes.string.isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired
-    }),
-    Descriptions: PropTypes.string.isRequired,
-    Director: PropTypes.shape({
-      Name: PropTypes.string.isRequired
-    }),
-    Featured: PropTypes.bool
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired
-};
-
-export default MovieView;

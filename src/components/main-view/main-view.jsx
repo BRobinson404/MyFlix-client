@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-import { LoginView } from '../login-view/login-view';
-import { SignupView } from '../signup-view/signup-view';
+import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view";
+import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Button, Spinner, Container, Row, Col } from "react-bootstrap";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import './main-view.scss';
 
@@ -16,7 +18,6 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -63,95 +64,107 @@ export const MainView = () => {
   if (!user) {
     // If there is no logged-in user, render login and signup forms
     return (
-      <Row>
-        <Col>
-          <LoginView onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }} />
-        </Col>
-        <Col>
-          <SignupView />
-        </Col>
-      </Row>
-    );
-  }
-
-  if (selectedMovie) {
-    // If a movie is selected, render the movie view and logout button
-    return (
-      <Row>
-        <Col>
-          <Button
-            onClick={() => {
-              setUser(null);
-              setToken(null);
-              localStorage.clear();
-            }}
-            variant="primary"
-          >
-            Logout
-          </Button>
-        </Col>
-        <Col>
-          <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-        </Col>
-      </Row>
+      <BrowserRouter>
+        <NavigationBar user={user} onLoggedOut={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }} />
+        <Container>
+          <Row>
+            <Col>
+              <Routes>
+                <Route path="/" element={<LoginView onLoggedIn={(user, token) => {
+                  setUser(user);
+                  setToken(token);
+                }} />} />
+                <Route path="/signup" element={<SignupView />} />
+              </Routes>
+            </Col>
+          </Row>
+        </Container>
+      </BrowserRouter>
     );
   }
 
   if (movies.length === 0) {
     // If there are no movies, render a "No movies found" message and logout button
     return (
-      <Row>
-        <Col>
-          <button
-            onClick={() => {
-              setUser(null);
-              setToken(null);
-              localStorage.clear();
-            }}
-          >
-            Logout
-          </button>
-        </Col>
-        <Col>
-          <div>No movies found</div>
-        </Col>
-      </Row>
+      <BrowserRouter>
+        <NavigationBar user={user} onLoggedOut={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }} />
+        <Container>
+          <Row>
+            <Col>
+              <Button onClick={() => {
+                setUser(null);
+                setToken(null);
+                localStorage.clear();
+              }}>
+                Logout
+              </Button>
+            </Col>
+            <Col>
+              <div>No movies found</div>
+            </Col>
+          </Row>
+        </Container>
+      </BrowserRouter>
     );
   }
 
   // Render the main view with logout button and movie cards
   return (
-    <Container>
-      <Button
-        onClick={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}
-      >
-        Logout
-      </Button>
-      <Row className="justify-content-center">
-        {loading ? (
-          // If movies are loading, render a loading spinner
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        ) : !movies || !movies.length ? (
-          // If no movies found, render a message
-          <p>No movies found</p>
-        ) : (
-          // Render movie cards
-          movies.map((movie) => (
-            <Col className="md-4" key={movie.id} md={4}>
-              <MovieCard movie={movie} onMovieClick={setSelectedMovie} />
-            </Col>
-          ))
-        )}
-      </Row>
-    </Container>
+    <BrowserRouter>
+      <NavigationBar user={user} onLoggedOut={() => {
+        setUser(null);
+        setToken(null);
+        localStorage.clear();
+      }} />
+      <Container>
+        <Row>
+          <Col>
+            <Button onClick={() => {
+              setUser(null);
+              setToken(null);
+              localStorage.clear();
+            }}>
+              Logout
+            </Button>
+          </Col>
+        </Row>
+        <Row className="justify-content-center">
+          {loading ? (
+            // If movies are loading, render a loading spinner
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          ) : !movies || !movies.length ? (
+            // If no movies found, render a message
+            <p>No movies found</p>
+          ) : (
+            // Render movie cards
+            movies.map((movie) => (
+              <Col className="mb-4" key={movie.id} md={4}>
+                <Link to={`/movie/${movie.id}`} className="movie-link">
+                  <MovieCard movie={movie} />
+                </Link>
+              </Col>
+            ))
+          )}
+        </Row>
+        <Row>
+          <Col>
+            <Routes>
+              <Route path="/movie/:id" element={<MovieView movies={movies} />} />
+            </Routes>
+          </Col>
+        </Row>
+      </Container>
+    </BrowserRouter>
   );
 };
+
