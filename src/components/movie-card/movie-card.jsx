@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 export const MovieCard = ({ movie }) => {
   return (
-    <Link to={`/movie/${movie._id}`} className="movie-link">
+    <Link to={`/movie/${movie.id}`} className="movie-link">
       <Card className="movie-card">
         <Card.Img variant="top" src={movie.ImagePath} />
         <Card.Body>
@@ -18,7 +18,7 @@ export const MovieCard = ({ movie }) => {
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
     ImagePath: PropTypes.string.isRequired,
     Director: PropTypes.shape({

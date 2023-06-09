@@ -5,7 +5,7 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Button, Spinner, Container, Row, Col } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
 
 import './main-view.scss';
 
@@ -116,6 +116,12 @@ export const MainView = () => {
     );
   }
 
+  // Get the movie ID from the URL params
+  const { id } = useParams();
+
+  // Find the selected movie from the movies array
+  const selectedMovieObj = movies.find(movie => movie.id === id);
+
   // Render the main view with logout button and movie cards
   return (
     <BrowserRouter>
@@ -125,17 +131,6 @@ export const MainView = () => {
         localStorage.clear();
       }} />
       <Container>
-        <Row>
-          <Col>
-            <Button onClick={() => {
-              setUser(null);
-              setToken(null);
-              localStorage.clear();
-            }}>
-              Logout
-            </Button>
-          </Col>
-        </Row>
         <Row className="justify-content-center">
           {loading ? (
             // If movies are loading, render a loading spinner
@@ -167,4 +162,3 @@ export const MainView = () => {
     </BrowserRouter>
   );
 };
-

@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom';
 import { Button, Form, ListGroup } from 'react-bootstrap';
 
 export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [birthday, setBirthday] = useState('');
 
   useEffect(() => {
     // Set the initial values of the input fields to the user's current information
     setUsername(user.Username);
     setPassword(user.Password);
     setEmail(user.Email);
-    setDateOfBirth(user.DateOfBirth);
+    setBirthday(user.Birthday);
   }, [user]);
 
   const handleUpdateUser = () => {
@@ -23,7 +23,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
       Username: username,
       Password: password,
       Email: email,
-      DateOfBirth: dateOfBirth,
+      Birthday: birthday,
     };
 
     // Call the onUpdateUser function passed from the parent component
@@ -36,7 +36,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
   };
 
   // Filter the movies array to get the user's favorite movies
-  const favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie._id));
+  const favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie.id));
 
   return (
     <div>
@@ -60,7 +60,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
 
         <Form.Group controlId="formDateOfBirth">
           <Form.Label>Date of Birth</Form.Label>
-          <Form.Control type="date" value={dateOfBirth} onChange={e => setDateOfBirth(e.target.value)} />
+          <Form.Control type="date" value={birthday} onChange={e => setBirthday(e.target.value)} />
         </Form.Group>
 
         <Button variant="primary" onClick={handleUpdateUser}>
@@ -78,8 +78,8 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
       ) : (
         <ListGroup>
           {favoriteMovies.map(movie => (
-            <ListGroup.Item key={movie._id}>
-              <Link to={`/movies/${movie._id}`}>{movie.Title}</Link>
+            <ListGroup.Item key={movie.id}>
+              <Link to={`/movies/${movie.id}`}>{movie.Title}</Link>
             </ListGroup.Item>
           ))}
         </ListGroup>

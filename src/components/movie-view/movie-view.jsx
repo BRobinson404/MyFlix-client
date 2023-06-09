@@ -1,14 +1,21 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, } from 'react-bootstrap';
 
-export const MovieView = ({ storedUser, storedToken, movies, similarMovies }) => {
-  const { movieId } = useParams();
+export const MovieView = ({ movies }) => {
+  const { id } = useParams();
 
-  const movie = movies.find((movie) => movie._id === movieId);
+  const movie = movies.length ? movies.find((movie) => movie.id === id) : null;
 
   return (
     <div className="MovieView">
+
+      <Row>
+        {/* Display the movie's image using the imagePath */}
+        <Col>
+          <img src={movie.ImagePath} className="img-fluid" alt="Movie Poster" />
+        </Col>
+      </Row>
 
       <Row className="row-title">
         {/* Display the movie's title */}
@@ -50,25 +57,7 @@ export const MovieView = ({ storedUser, storedToken, movies, similarMovies }) =>
           </Link>
         </Col>
       </Row>
-
-      <Row>
-        {/* Display the movie's image using the imagePath */}
-        <Col>
-          <img src={movie.ImagePath} className="img-fluid" alt="Movie Poster" />
-        </Col>
-      </Row>
-
-      <Row>
-        {/* Display the list of similar movies */}
-        <Col>
-          <h4>Similar Movies:</h4>
-          {similarMovies.map((similarMovie) => (
-            <Link key={similarMovie._id} to={`/movie/${similarMovie._id}`} className="similar-movie-link">
-              {similarMovie.Title}
-            </Link>
-          ))}
-        </Col>
-      </Row>
     </div>
   );
 };
+
