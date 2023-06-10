@@ -11,7 +11,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
-    // Set the initial values of the input fields to the user's current information
     // useEffect hook to set initial values of input fields based on user's current information
     setUsername(user.Username);
     setPassword(user.Password);
@@ -20,36 +19,89 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
     setFavoriteMovies(user.FavoriteMovies);
   }, [user]);
 
-  const handleUpdateUser = () => {
-    // Create a new user object with the updated information
+  const handleUpdateUser = async () => {
     // Event handler for updating user information
     const updatedUser = {
       ...user,
       Username: username,
       Password: password,
       Email: email,
-      Birthday: birthday,
+      Birthday: birthday.split("T")[0],
     };
 
-    // Call the onUpdateUser function passed from the parent component
-    onUpdateUser(updatedUser);
+    try {
       // Sending a PUT request to update the user information
+      const response = await fetch(
+        `https://myflix404.herokuapp.com/users/${user.Username}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedUser),
+        }
+      );
+      const data = await response.json();
+
       onUpdateUser(data); // Updating the user information using the onUpdateUser prop
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDeregister = async () => {
     // Event handler for user deregistration
+    try {
       // Sending a DELETE request to deregister the user
+      const response = await fetch(
+        `https://myflix404.herokuapp.com/users/${user.Username}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      if (response.ok) {
         onDeregister(); // Calling the onDeregister prop if the response is successful
+      } else {
+        console.error("Failed to deregister user");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleDeregister = () => {
-    // Call the onDeregister function passed from the parent component
-    onDeregister(user);
+  const handleRemoveFavorite = async (movieId) => {
     // Event handler for removing a movie from favorites
+    try {
       // Sending a DELETE request to remove the movie from favorites
+      const response = await fetch(
+        `https://myflix404.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+  
+      if (response.ok) {
         // Update the favoriteMovies state by filtering out the removed movie
+        setFavoriteMovies((prevMovies) =>
+          prevMovies.filter((movie) => movie !== movieId)
+        );
+      } else {
+        console.error("Failed to remove movie from favorites");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+  
 
-  // Filter the movies array to get the user's favorite movies
-  const favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie.id));
   const filteredMovies = movies.filter(movie => favoriteMovies.includes(movie.id)); // Filtering the movies array based on favoriteMovies
 
   return (
@@ -87,13 +139,20 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
       </Button>
 
       <h3>Favorite Movies</h3>
-      {favoriteMovies.length === 0 ? (
+      {filteredMovies.length === 0 ? (
         <p>No favorite movies found.</p>
       ) : (
         <ListGroup>
-          {favoriteMovies.map(movie => (
+          {filteredMovies.map((movie) => (
             <ListGroup.Item key={movie.id}>
               <Link to={`/movies/${movie.id}`}>{movie.Title}</Link>
+              <Button
+                variant="danger"
+                onClick={() => handleRemoveFavorite(movie.id)}
+                className="ml-2"
+              >
+                Remove
+              </Button>
             </ListGroup.Item>
           ))}
         </ListGroup>
