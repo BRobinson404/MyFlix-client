@@ -8,6 +8,11 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [birthday, setBirthday] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
     // Set the initial values of the input fields to the user's current information
@@ -16,6 +21,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
     setPassword(user.Password);
     setEmail(user.Email);
     setBirthday(user.Birthday);
+    setFavoriteMovies(user.FavoriteMovies);
   }, [user]);
 
   const handleUpdateUser = () => {
