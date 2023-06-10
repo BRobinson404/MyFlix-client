@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 export const MovieCard = ({ movie }) => {
   return (
-    <Link to={`/movie/${movie.id}`} className="movie-link">
+    <Link to={`/movies/${movie.id}`} className="movie-link">
       <Card className="movie-card">
         <Card.Img variant="top" src={movie.ImagePath} />
         <Card.Body>
