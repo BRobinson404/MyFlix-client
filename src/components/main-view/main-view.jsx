@@ -5,37 +5,41 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Button, Spinner, Container, Row, Col } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useParams, Navigate } from "react-router-dom";
+import { ProfileView } from "../profile/profile-view/profile-view";
 
-import './main-view.scss';
+import "./main-view.scss";
 
 export const MainView = () => {
-  // Retrieve stored user and token from local storage
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
 
-  // Set up state variables
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // Function to handle adding a movie to favorites
+  const handleAddFavorite = async (movie) => {
+    // Implement your logic to add the movie to favorites
+  };
+
+  // Fetch movies from the API on component mount or when the token changes
   useEffect(() => {
-    // Fetch movies from the API when the token changes
     const fetchData = async () => {
       if (!token) {
         return;
       }
       setLoading(true);
       try {
-        // Make API request to fetch movies
-        const response = await fetch('https://myflix404.herokuapp.com/movies', {
+        // Fetch movies from the API using the token for authentication
+        const response = await fetch("https://myflix404.herokuapp.com/movies", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
         setLoading(false);
 
-        // Transform the movie data and set the movies state
+        // Map the response data to the format expected by the MovieCard component
         const moviesFromApi = data.map((movie) => {
           return {
             id: movie._id,
@@ -43,12 +47,12 @@ export const MainView = () => {
             ImagePath: movie.ImagePath,
             Descriptions: movie.Descriptions,
             Genre: {
-              Name: movie.Genre.Name
+              Name: movie.Genre.Name,
             },
             Director: {
-              Name: movie.Director.Name
+              Name: movie.Director.Name,
             },
-            Featured: movie.Featured
+            Featured: movie.Featured,
           };
         });
         setMovies(moviesFromApi);
@@ -61,23 +65,47 @@ export const MainView = () => {
     fetchData();
   }, [token]);
 
+  // Function to handle updating the user
+  const handleUpdateUser = (updatedUser) => {
+    setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+  };
+
+  // Function to handle deregistering the user
+  const handleDeregister = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  };
+
+  // Render different views based on user authentication and movie data
+
+  // If user is not logged in, render the login and signup views
   if (!user) {
-    // If there is no logged-in user, render login and signup forms
     return (
       <BrowserRouter>
-        <NavigationBar user={user} onLoggedOut={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }} />
+        <NavigationBar
+          user={user}
+          onLoggedOut={() => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          }}
+        />
         <Container>
           <Row>
             <Col>
               <Routes>
-                <Route path="/" element={<LoginView onLoggedIn={(user, token) => {
-                  setUser(user);
-                  setToken(token);
-                }} />} />
+                <Route
+                  path="/login"
+                  element={
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
+                  }
+                />
                 <Route path="/signup" element={<SignupView />} />
               </Routes>
             </Col>
@@ -87,23 +115,28 @@ export const MainView = () => {
     );
   }
 
+  // If no movies are available, render a message
   if (movies.length === 0) {
-    // If there are no movies, render a "No movies found" message and logout button
     return (
       <BrowserRouter>
-        <NavigationBar user={user} onLoggedOut={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }} />
+        <NavigationBar
+          user={user}
+          onLoggedOut={() => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          }}
+        />
         <Container>
           <Row>
             <Col>
-              <Button onClick={() => {
-                setUser(null);
-                setToken(null);
-                localStorage.clear();
-              }}>
+              <Button
+                onClick={() => {
+                  setUser(null);
+                  setToken(null);
+                  localStorage.clear();
+                }}
+              >
                 Logout
               </Button>
             </Col>
@@ -116,49 +149,75 @@ export const MainView = () => {
     );
   }
 
-  // Get the movie ID from the URL params
-  const { id } = useParams();
+  // Render the main view with the movie cards and movie details
 
-  // Find the selected movie from the movies array
-  const selectedMovieObj = movies.find(movie => movie.id === id);
-
-  // Render the main view with logout button and movie cards
   return (
     <BrowserRouter>
-      <NavigationBar user={user} onLoggedOut={() => {
-        setUser(null);
-        setToken(null);
-        localStorage.clear();
-      }} />
+      <NavigationBar
+        user={user}
+        onLoggedOut={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }}
+      >
+        <a href={`/users/${user.Username}`}>Profile</a>
+      </NavigationBar>
       <Container>
         <Row className="justify-content-center">
           {loading ? (
-            // If movies are loading, render a loading spinner
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
           ) : !movies || !movies.length ? (
-            // If no movies found, render a message
             <p>No movies found</p>
           ) : (
-            // Render movie cards
             movies.map((movie) => (
               <Col className="mb-4" key={movie.id} md={4}>
-                <Link to={`/movie/${movie.id}`} className="movie-link">
+                <Link to={`/movies/${movie.id}`} className="movie-link">
                   <MovieCard movie={movie} />
                 </Link>
               </Col>
             ))
           )}
         </Row>
-        <Row>
-          <Col>
-            <Routes>
-              <Route path="/movie/:id" element={<MovieView movies={movies} />} />
-            </Routes>
-          </Col>
-        </Row>
       </Container>
+      <Routes>
+        <Route
+          path="/movies/:id"
+          element={
+            <>
+              {storedUser && movies.length === 0 ? (
+                <Col>The list is empty!</Col>
+              ) : storedUser ? (
+                <Col xs={12}>
+                  <MovieView
+                    movies={movies}
+                    user={user}
+                    storedUser={storedUser}
+                    storedToken={storedToken}
+                    onAddFavorite={handleAddFavorite}
+                  />
+                </Col>
+              ) : (
+                <Navigate to="/login" />
+              )}
+            </>
+          }
+        />
+        <Route
+          path="/users/:username"
+          element={
+            <ProfileView
+              user={user}
+              movies={movies}
+              onUpdateUser={handleUpdateUser}
+              onDeregister={handleDeregister}
+              onAddFavorite={handleAddFavorite}
+            />
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
 };
