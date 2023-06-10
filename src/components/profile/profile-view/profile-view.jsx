@@ -4,10 +4,6 @@ import { Button, Form, ListGroup } from 'react-bootstrap'; // Importing Button, 
 
 // State variables
 export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
-    const [birthday, setBirthday] = useState('');
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
