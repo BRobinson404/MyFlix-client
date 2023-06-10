@@ -1,15 +1,22 @@
-import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Row, Col, } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { Row, Col, Button } from 'react-bootstrap';
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, user, onAddFavorite }) => {
   const { id } = useParams();
 
   const movie = movies.length ? movies.find((movie) => movie.id === id) : null;
 
+  const handleAddFavorite = () => {
+    onAddFavorite(movie);
+  };
+
+  useEffect(() => {
+    console.log("User prop changed:", user);
+  }, [user]);
+
   return (
     <div className="MovieView">
-
       <Row>
         {/* Display the movie's image using the imagePath */}
         <Col>
@@ -50,14 +57,24 @@ export const MovieView = ({ movies }) => {
       </Row>
 
       <Row>
-        {/* Create a button for going back, using the Link component */}
+        {/* Create a button for going back */}
         <Col>
-          <Link to="/" className="btn btn-primary">
+          <Link to="/movies" className="btn btn-primary">
             Back
           </Link>
         </Col>
       </Row>
+
+      {user && (
+        <Row>
+          {/* Display the "Favorite" button if the user is logged in */}
+          <Col>
+            <Button variant="primary" onClick={handleAddFavorite}>
+              Favorite
+            </Button>
+          </Col>
+        </Row>
+      )}
     </div>
   );
 };
-
