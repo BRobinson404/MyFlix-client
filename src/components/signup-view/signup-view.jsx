@@ -1,4 +1,3 @@
-import{ useState } from 'react';
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { Form, Row, Col, Button } from 'react-bootstrap';
@@ -36,37 +35,36 @@ export const SignupView = () => {
   };
 
   return (
-        <Form onSubmit={handleSubmit}>
-          <Row>
-            <Col>
-              <Form.Group controlId='formUsername'>
-              <Form.Label>Username:</Form.Label>
-              <Form.Control
+    <Form className='signup-form' onSubmit={handleSubmit}>
+      <Row>
+        <Col xs={6}>
+          <Form.Group controlId='formUsername'>
+            <Form.Label>Username:</Form.Label>
+            <Form.Control
               type='text'
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
               minLength='3'
-              />
-              </Form.Group>
-            </Col>
-        </Row>
-          <Row>
-            <Col>
-              <Form.Group controlId='formPassword'>
-                <Form.Label>Password:</Form.Label>
-                <Form.Control
-                  type='password'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-
+            />
+          </Form.Group>
+        </Col>
+      </Row>
       <Row>
-        <Col>
+        <Col xs={6}>
+          <Form.Group controlId='formPassword'>
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </Form.Group>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={6}>
           <Form.Group controlId='formEmail'>
             <Form.Label>Email:</Form.Label>
             <Form.Control
@@ -78,9 +76,8 @@ export const SignupView = () => {
           </Form.Group>
         </Col>
       </Row>
-
       <Row>
-        <Col>
+        <Col xs={6}>
           <Form.Group controlId='formBirthday'>
             <Form.Label>Birthday:</Form.Label>
             <Form.Control
@@ -92,14 +89,13 @@ export const SignupView = () => {
           </Form.Group>
         </Col>
       </Row>
-
       <Row>
-        <Col>
+        <Col  xs={3}>
           <Button type='submit'>Submit</Button>
         </Col>
         <Col xs={3}>
           <Link to={`/login`}>
-              I already have an account.
+            I already have an account.
           </Link>
         </Col>
       </Row>

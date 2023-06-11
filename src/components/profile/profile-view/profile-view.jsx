@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'; // Importing necessary dependencies from React
 import { Link } from 'react-router-dom'; // Importing Link component from react-router-dom
-import { Button, Form, ListGroup } from 'react-bootstrap'; // Importing Button, Form, and ListGroup components from react-bootstrap
+import { Button, Form, ListGroup, Row, Col } from 'react-bootstrap'; // Importing Button, Form, and ListGroup components from react-bootstrap
 
 // State variables
 export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
@@ -106,9 +106,9 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
 
   return (
     <div>
-      <h2>Profile</h2>
+      <h1>Profile</h1>
 
-      <Form>
+      <Form className="profile-form">
         <Form.Group controlId="formUsername">
           <Form.Label>Username</Form.Label>
           <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />
@@ -128,32 +128,45 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
           <Form.Label>Date of Birth</Form.Label>
           <Form.Control type="date" value={birthday} onChange={e => setBirthday(e.target.value)} />
         </Form.Group>
-
-        <Button variant="primary" onClick={handleUpdateUser}>
-          Update
-        </Button>
       </Form>
 
-      <Button variant="danger" onClick={handleDeregister}>
-        Deregister
-      </Button>
+      <Row>
+        <Col className='update-btn-col'  xl={2}>
+          <Button variant="primary" onClick={handleUpdateUser} >
+            Update
+          </Button>
+        </Col>
 
-      <h3>Favorite Movies</h3>
+        <Col className='deregister-btn-col'>
+          <Button variant="danger" onClick={handleDeregister} >
+            Deregister
+          </Button>
+        </Col>
+      </Row>
+
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <h2>Favorite Movies</h2>
       {filteredMovies.length === 0 ? (
         <p>No favorite movies found.</p>
       ) : (
-        <ListGroup>
+        <ListGroup className="favorite-list">
           {filteredMovies.map((movie) => (
             <ListGroup.Item key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.Title}</Link>
-              <Button
-                variant="danger"
-                onClick={() => handleRemoveFavorite(movie.id)}
-                className="ml-2"
-              >
-                Remove
-              </Button>
+
+                <Link to={`/movies/${movie.id}`}>{movie.Title}</Link>
+
+                <Button
+                  variant="danger"
+                  onClick={() => handleRemoveFavorite(movie.id)}
+                  className="ml-2"
+                >
+                  x
+                </Button>
             </ListGroup.Item>
+
           ))}
         </ListGroup>
       )}

@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 
 export const MovieCard = ({ movie }) => {
   return (
-    <Link to={`/movies/${movie.id}`} className="movie-link">
-      <Card className="movie-card">
-        <Card.Img variant="top" src={movie.ImagePath} />
-        <Card.Body>
-          <Card.Title className="card-title">{movie.Title}</Card.Title>
-        </Card.Body>
-      </Card>
-    </Link>
+    <Card className="movie-card border-0">
+      <Card.Body className="d-flex flex-column align-items-center">
+        <Link to={`/movies/${movie.id}`} className="movie-link">
+          <Card.Img variant="top" src={movie.ImagePath} />
+        </Link>
+        <div className="card-title my-auto">{movie.Title}</div>
+      </Card.Body>
+    </Card>
   );
 };
 

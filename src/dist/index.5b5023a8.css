@@ -7,8 +7,16 @@
   height: auto;
 }
 
+.favorite-button.btn.btn-primary {
+  color: #fff;
+}
+
 * {
   color: #fff;
+  background-color: #202020;
+}
+
+.navigation-bar {
   background-color: #202020;
 }
 
@@ -17,8 +25,12 @@
   box-shadow: 0 0 20px #007bff;
 }
 
-.movie-card .card-title {
+.card-title.my-auto {
   color: #fff;
+  border: none;
+  font-size: x-large;
+  -webkit-text-decoration: underline #202020;
+  text-decoration: underline #202020;
 }
 
 .MovieView {
@@ -35,6 +47,50 @@
 
 .MovieView .row-title span:first-child {
   font-weight: bold;
+}
+
+.profile-form .signup-form {
+  width: 50%;
+}
+
+.update-btn-col, .deregister-btn-col {
+  padding-top: 50px;
+}
+
+.favorite-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.favorite-list .list-group-item {
+  background-color: #202020;
+  border: none;
+  align-items: center;
+  padding: 8px 0;
+  display: flex;
+}
+
+.favorite-list .list-group-item a {
+  color: #fff;
+  font-size: large;
+  text-decoration: none;
+  transition: text-shadow .3s ease-in-out;
+}
+
+.favorite-list .list-group-item a:hover {
+  text-shadow: 0 0 15px #007bff;
+}
+
+.favorite-list .list-group-item button {
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin-left: .5rem;
+  padding: 0;
+  font-weight: bold;
+  display: flex;
 }
 
 :root, [data-bs-theme="light"] {

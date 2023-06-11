@@ -57,24 +57,19 @@ export const MovieView = ({ movies, user, onAddFavorite }) => {
       </Row>
 
       <Row>
-        {/* Create a button for going back */}
-        <Col>
-          <Link to="/movies" className="btn btn-primary">
-            Back
-          </Link>
-        </Col>
-      </Row>
-
-      {user && (
-        <Row>
-          {/* Display the "Favorite" button if the user is logged in */}
-          <Col>
-            <Button variant="primary" onClick={handleAddFavorite}>
-              Favorite
-            </Button>
-          </Col>
-        </Row>
-      )}
+      <Col xs={3} >
+        <Link to="/movies" className="btn btn-primary">
+          Back
+        </Link>
+      </Col>
+      <Col xs={3}>
+        {user && (
+          <Button className="favorite-button" variant="primary" onClick={handleAddFavorite}>
+            Favorite &#x2665;
+          </Button>
+        )}
+      </Col>
+    </Row>
     </div>
   );
 };

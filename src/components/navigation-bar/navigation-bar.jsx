@@ -11,7 +11,7 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
   };
 
   return (
-    <Navbar variant="dark" expand="lg">
+    <Navbar className= "navigation-bar" variant="dark" expand="xl">
       <Navbar.Brand as={Link} to="/">
         MyFlix
       </Navbar.Brand>
