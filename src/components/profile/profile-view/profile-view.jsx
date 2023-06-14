@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'; // Importing necessary dependencies from React
-import { Link } from 'react-router-dom'; // Importing Link component from react-router-dom
-import { Button, Form, ListGroup, Row, Col } from 'react-bootstrap'; // Importing Button, Form, and ListGroup components from react-bootstrap
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Form, ListGroup, Row, Col } from 'react-bootstrap';
 
-// State variables
 export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -11,7 +10,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
-    // useEffect hook to set initial values of input fields based on user's current information
     setUsername(user.Username);
     setPassword(user.Password);
     setEmail(user.Email);
@@ -20,7 +18,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
   }, [user]);
 
   const handleUpdateUser = async () => {
-    // Event handler for updating user information
     const updatedUser = {
       ...user,
       Username: username,
@@ -30,7 +27,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
     };
 
     try {
-      // Sending a PUT request to update the user information
       const response = await fetch(
         `https://myflix404.herokuapp.com/users/${user.Username}`,
         {
@@ -44,40 +40,41 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
       );
       const data = await response.json();
 
-      onUpdateUser(data); // Updating the user information using the onUpdateUser prop
+      onUpdateUser(data);
     } catch (error) {
       console.error(error);
     }
   };
 
   const handleDeregister = async () => {
-    // Event handler for user deregistration
-    try {
-      // Sending a DELETE request to deregister the user
-      const response = await fetch(
-        `https://myflix404.herokuapp.com/users/${user.Username}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+    const confirmed = window.confirm("Are you sure you want to deregister?");
+  
+    if (confirmed) {
+      try {
+        const response = await fetch(
+          `https://myflix404.herokuapp.com/users/${user.Username}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+  
+        if (response.ok) {
+          onDeregister();
+        } else {
+          console.error("Failed to deregister user");
         }
-      );
-
-      if (response.ok) {
-        onDeregister(); // Calling the onDeregister prop if the response is successful
-      } else {
-        console.error("Failed to deregister user");
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   };
+  
 
   const handleRemoveFavorite = async (movieId) => {
-    // Event handler for removing a movie from favorites
     try {
-      // Sending a DELETE request to remove the movie from favorites
       const response = await fetch(
         `https://myflix404.herokuapp.com/users/${user.Username}/movies/${movieId}`,
         {
@@ -89,7 +86,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
       );
   
       if (response.ok) {
-        // Update the favoriteMovies state by filtering out the removed movie
         setFavoriteMovies((prevMovies) =>
           prevMovies.filter((movie) => movie !== movieId)
         );
@@ -100,9 +96,8 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
       console.error(error);
     }
   };
-  
 
-  const filteredMovies = movies.filter(movie => favoriteMovies.includes(movie.id)); // Filtering the movies array based on favoriteMovies
+  const filteredMovies = movies && movies.filter(movie => favoriteMovies.includes(movie.id));
 
   return (
     <div>
@@ -130,10 +125,37 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
         </Form.Group>
       </Form>
 
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <h2>Favorite Movies</h2>
+      {filteredMovies && filteredMovies.length === 0 ? (
+        <p>No favorite movies found.</p>
+      ) : (
+        <ListGroup className="favorite-list">
+          {filteredMovies.map((movie) => (
+            <ListGroup.Item key={movie.id}>
+              <Link to={`/movies/${movie.id}`}>{movie.Title}</Link>
+              <Button
+                variant="danger"
+                onClick={() => handleRemoveFavorite(movie.id)}
+                className="ml-2"
+              >
+                x
+              </Button>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      )}
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <Row>
         <Col className='update-btn-col'  xl={2}>
           <Button variant="primary" onClick={handleUpdateUser} >
-            Update
+            Save Changes
           </Button>
         </Col>
 
@@ -144,32 +166,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
         </Col>
       </Row>
 
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <h2>Favorite Movies</h2>
-      {filteredMovies.length === 0 ? (
-        <p>No favorite movies found.</p>
-      ) : (
-        <ListGroup className="favorite-list">
-          {filteredMovies.map((movie) => (
-            <ListGroup.Item key={movie.id}>
-
-                <Link to={`/movies/${movie.id}`}>{movie.Title}</Link>
-
-                <Button
-                  variant="danger"
-                  onClick={() => handleRemoveFavorite(movie.id)}
-                  className="ml-2"
-                >
-                  x
-                </Button>
-            </ListGroup.Item>
-
-          ))}
-        </ListGroup>
-      )}
     </div>
   );
 };

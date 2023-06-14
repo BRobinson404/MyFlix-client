@@ -8,7 +8,7 @@ export const MovieView = ({ movies, user, onAddFavorite }) => {
   const movie = movies.length ? movies.find((movie) => movie.id === id) : null;
 
   const handleAddFavorite = () => {
-    onAddFavorite(movie);
+    onAddFavorite(movie, user);
   };
 
   useEffect(() => {
