@@ -1,71 +1,75 @@
-import PropTypes from 'prop-types';
-import { Row, Button } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { Row, Col, Button } from 'react-bootstrap';
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies, user, onAddFavorite }) => {
+  const { id } = useParams();
+
+  const movie = movies.length ? movies.find((movie) => movie.id === id) : null;
+
+  const handleAddFavorite = () => {
+    onAddFavorite(movie);
+  };
+
+  useEffect(() => {
+    console.log("User prop changed:", user);
+  }, [user]);
+
   return (
-    <div className='MovieView'>
+    <div className="MovieView">
       <Row>
         {/* Display the movie's image using the imagePath */}
-        <div>
+        <Col>
           <img src={movie.ImagePath} className="img-fluid" alt="Movie Poster" />
-        </div>
+        </Col>
       </Row>
 
       <Row className="row-title">
         {/* Display the movie's title */}
-        <div>
+        <Col>
           <span>Title: </span>
           <span>{movie.Title}</span>
-        </div>
+        </Col>
       </Row>
 
       <Row className="row-title">
         {/* Display the movie's description */}
-        <div>
+        <Col>
           <span>Description: </span>
           <span>{movie.Descriptions}</span>
-        </div>
+        </Col>
       </Row>
 
       <Row className="row-title">
         {/* Display the movie's genre */}
-        <div>
+        <Col>
           <span>Genre: </span>
           <span>{movie.Genre.Name}</span>
-        </div>
+        </Col>
       </Row>
 
       <Row className="row-title">
         {/* Display the movie's director */}
-        <div>
+        <Col>
           <span>Director: </span>
           <span>{movie.Director.Name}</span>
-        </div>
+        </Col>
       </Row>
 
       <Row>
-          {/* Create a button for going back, calling the onBackClick function when clicked */}
-          <Button onClick={onBackClick} variant="primary">Back</Button>
-      </Row>
+      <Col xs={3} >
+        <Link to="/movies" className="btn btn-primary">
+          Back
+        </Link>
+      </Col>
+      <Col xs={3}>
+        {user && (
+          <Button className="favorite-button" variant="primary" onClick={handleAddFavorite}>
+            Favorite &#x2665;
+          </Button>
+        )}
+      </Col>
+    </Row>
     </div>
   );
 };
-
-
-MovieView.propTypes = {
-  movie: PropTypes.shape({
-    ImagePath: PropTypes.string.isRequired,
-    Title: PropTypes.string.isRequired,
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired
-    }),
-    Descriptions: PropTypes.string.isRequired,
-    Director: PropTypes.shape({
-      Name: PropTypes.string.isRequired
-    }),
-    Featured: PropTypes.bool
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired
-};
-
-export default MovieView;

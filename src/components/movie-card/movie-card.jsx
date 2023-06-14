@@ -1,32 +1,33 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-/* This component can be used to render a list of movie cards and handle user interactions with them.*/
-export const MovieCard = ({ movie, onMovieClick }) => {
+export const MovieCard = ({ movie }) => {
   return (
-    <Card className="movie-card" onClick={() => onMovieClick(movie)}>
-      <Card.Img
-        variant="top"
-        src={movie.ImagePath}
-      />
-      <Card.Body>
-        <Card.Title className='card-title'>{movie.Title}</Card.Title>
+    <Card className="movie-card border-0">
+      <Card.Body className="d-flex flex-column align-items-center">
+        <Link to={`/movies/${movie.id}`} className="movie-link">
+          <Card.Img variant="top" src={movie.ImagePath} />
+        </Link>
+        <div className="card-title my-auto">{movie.Title}</div>
       </Card.Body>
     </Card>
   );
 };
 
-//PropTypes conditions for return MovieCard statement in main-view.jsx
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
     ImagePath: PropTypes.string.isRequired,
-    Director: PropTypes.string.isRequired,
+    Director: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+    }).isRequired,
     Descriptions: PropTypes.string.isRequired,
-    Genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    Genre: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+    }).isRequired,
     Featured: PropTypes.bool.isRequired,
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
 };

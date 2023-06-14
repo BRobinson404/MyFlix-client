@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import { Row, Col } from 'react-bootstrap';
 
 export const LoginView = ({ onLoggedIn }) => {
-  // Set up state variables for username and password
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (event) => {
-    // Prevent the default form submission behavior
     event.preventDefault();
 
-    // Create an object with username and password data
     const data = {
       Username: username,
       Password: password
     };
 
-    // Send a POST request to the login endpoint
     fetch('https://myflix404.herokuapp.com/login', {
       method: 'POST',
       headers: {
@@ -28,18 +27,16 @@ export const LoginView = ({ onLoggedIn }) => {
       .then((data) => {
         console.log('Login response: ', data);
         if (data.user) {
-          // If login is successful, store user and token in local storage
-          localStorage.setItem("user", JSON.stringify(data.user));
-          localStorage.setItem("token", data.token);
-          // Call the onLoggedIn callback with user and token
+          localStorage.setItem('user', JSON.stringify(data.user));
+          localStorage.setItem('token', data.token);
           onLoggedIn(data.user, data.token);
+          // Redirect to the main view after successful login
+          navigate('/movies');
         } else {
-          // If login fails, show an alert
-          alert("No such user");
+          alert('No such user');
         }
       })
       .catch((e) => {
-        // Catch any errors and show an alert
         alert('Something went wrong');
       });
   };
@@ -53,7 +50,7 @@ export const LoginView = ({ onLoggedIn }) => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          minLength="3" 
+          minLength="3"
         />
       </Form.Group>
 
@@ -66,9 +63,17 @@ export const LoginView = ({ onLoggedIn }) => {
           required
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+      <Row>
+        <Col xs={{ offset: 4 }} className="mt-2">
+          <Button variant="primary" type="submit" className="align-self-center">
+            Submit
+          </Button>
+        </Col>
+        <Col xs={3}>
+          <Link to="/signup">I don't have an account.</Link>
+        </Col>
+        <Col xs={{ offset: 2 }}></Col>
+      </Row>
     </Form>
   );
 };
