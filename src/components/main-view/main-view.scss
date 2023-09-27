@@ -1,10 +1,16 @@
 .movie-card {
   width: 100%;
-}
 
-.movie-card img {
-  width: 100%;
-  height: auto;
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 .favorite-button.btn.btn-primary {
@@ -20,12 +26,7 @@
   background-color: #202020;
 }
 
-.movie-card:hover {
-  box-shadow: 0 0 20px #007bff;
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.card-title.my-auto{
+.card-title.my-auto {
   color: white;
   text-decoration: underline;
   text-decoration-color: #202020;
@@ -33,33 +34,28 @@
   font-size: x-large;
 }
 
-
-
 .MovieView {
   display: flex;
   flex-direction: column;
   justify-content: left;
   height: 100vh;
-}
 
-.MovieView .row-title {
-  display: flex;
-  margin-bottom: 10px;
-}
+  .row-title {
+    display: flex;
+    margin-bottom: 10px;
 
-.MovieView .row-title span:first-child {
-  font-weight: bold;
+    span:first-child {
+      font-weight: bold;
+    }
+  }
 }
 
 .profile-form .signup-form {
   width: 50%;
 }
 
-.update-btn-col {
-  padding-top: 50px;
-}
-
-.deregister-btn-col{
+.update-btn-col,
+.deregister-btn-col {
   padding-top: 50px;
 }
 
@@ -70,18 +66,18 @@
   .list-group-item {
     display: flex;
     align-items: center;
-    background-color: #202020 ;
+    background-color: #202020;
     border: none;
     padding: 8px 0px;
 
     a {
       color: white;
       text-decoration: none;
-      transition: text-shadow 0.3s ease-in-out;
+      transition: transform 0.3s ease-in-out; /* Use the transform animation for hover */
       font-size: large;
 
       &:hover {
-        text-shadow: 0 0 15px #007bff;
+        transform: scale(1.05); /* Increase the scale on hover */
       }
     }
 
@@ -94,7 +90,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-weight: bold ;
+      font-weight: bold;
     }
   }
 }
