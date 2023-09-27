@@ -1,11 +1,10 @@
 /* main-view.scss */
 
 /* Apply global styles to the body or container if needed */
-body {
+* {
   background-color: #202020; /* Set a black background color */
   color: white; /* Set white text color */
   margin: 0; /* Remove default body margin */
-  font-family: Arial, sans-serif; /* Choose a suitable font-family */
 }
 
 .container {
