@@ -13,75 +13,17 @@
   }
 }
 
-.favorite-button.btn.btn-primary {
-  color: white;
-}
+/* other existing styles */
 
-* {
-  background-color: #202020;
-  color: white;
-}
-
-.navigation-bar {
-  background-color: #202020;
-}
-
-.card-title.my-auto {
-  color: white;
-  text-decoration: underline;
-  text-decoration-color: #202020;
-  border: none;
-  font-size: x-large;
-}
-
-.profile-form .signup-form {
-  width: 50%;
-}
-
-.update-btn-col,
-.deregister-btn-col {
-  padding-top: 50px;
-}
-
-.favorite-list {
-  list-style-type: none;
-  padding: 0;
-
-  .list-group-item {
-    display: flex;
-    align-items: center;
-    background-color: #202020;
-    border: none;
-    padding: 8px 0px;
-
-    a {
-      color: white;
-      text-decoration: none;
-      transition: transform 0.3s ease-in-out;
-      font-size: large;
-
-      &:hover {
-        transform: scale(1.05);
-      }
-    }
-
-    button {
-      margin-left: 0.5rem;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-    }
+/* Responsive styles for movie cards */
+@media (min-width: 576px) {
+  .movie-card {
+    width: 50%;
   }
 }
 
-/* Responsive styles for movie cards */
-@media (max-width: 576px) {
+@media (min-width: 768px) {
   .movie-card {
-    width: 100%;
+    width: 33.33%;
   }
 }
