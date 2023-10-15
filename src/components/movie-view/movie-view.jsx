@@ -5,7 +5,7 @@ import './movie-view.scss';
 
 export const MovieView = ({ movies, user, onAddFavorite }) => {
   const { id } = useParams();
-  const movie = movies.length ? movies.find((movie) => movie.id === id) : null;
+  const movie = movies.length ? movies.find((movie) => movie._id.$oid === id) : null;
 
   const handleAddFavorite = () => {
     onAddFavorite(movie, user);
@@ -51,18 +51,6 @@ export const MovieView = ({ movies, user, onAddFavorite }) => {
           <Row className="row-title">
             <Col>
               <span>Director Bio: {movie.Director.Bio}</span>
-            </Col>
-          </Row>
-
-          <Row className="row-title">
-            <Col>
-              <span>Director Birth Year: {movie.Director.Birth}</span>
-            </Col>
-          </Row>
-
-          <Row className="row-title">
-            <Col>
-              <span>Director Status: {movie.Director.Death}</span>
             </Col>
           </Row>
 
