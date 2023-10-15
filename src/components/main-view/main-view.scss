@@ -12,10 +12,10 @@
     transform: scale(1.02);
   }
 }
-
-/* other existing styles */
-
-/* Responsive styles for movie cards */
+* {
+  background-color: #202020;
+  color: white;
+}
 @media (min-width: 576px) {
   .movie-card {
     width: 50%;
