@@ -9,6 +9,7 @@ export const MovieView = ({ movies, user, onAddFavorite }) => {
 
   const handleAddFavorite = () => {
     onAddFavorite(movie, user);
+    alert('Movie added to favorites!');
   };
 
   useEffect(() => {
@@ -44,6 +45,24 @@ export const MovieView = ({ movies, user, onAddFavorite }) => {
           <Row className="row-title">
             <Col>
               <span>Director: {movie.Director.Name}</span>
+            </Col>
+          </Row>
+
+          <Row className="row-title">
+            <Col>
+              <span>Director Bio: {movie.Director.Bio}</span>
+            </Col>
+          </Row>
+
+          <Row className="row-title">
+            <Col>
+              <span>Director Birth Year: {movie.Director.Birth}</span>
+            </Col>
+          </Row>
+
+          <Row className="row-title">
+            <Col>
+              <span>Director Status: {movie.Director.Death}</span>
             </Col>
           </Row>
 
