@@ -123,7 +123,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
 
         <Form.Group controlId="formDateOfBirth">
           <Form.Label>Date of Birth</Form.Label>
-          <Form.Control type="date" value={birthday} onChange={e => setBirthday(e.target.value)} />
+          <Form.Control type="date" value={birthday ? birthday.split("T")[0] : ''} onChange={e => setBirthday(e.target.value)} />
         </Form.Group>
       </Form>
 
