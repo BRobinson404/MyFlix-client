@@ -1,14 +1,13 @@
-// ProfileView.scss
 .profile-container {
     * {
       background-color: #202020;
       color: white;
-      margin-bottom: auto;
     }
   
     .profile-form,
     .signup-form {
       width: 50%;
+      margin-bottom: 20px; // Add margin at the bottom
     }
   
     .update-btn-col,
@@ -19,6 +18,7 @@
     .favorite-list {
       list-style-type: none;
       padding: 0;
+      margin-top: 20px; // Add margin at the top
   
       .list-group-item {
         display: flex;
@@ -44,6 +44,7 @@
           margin-left: 0.5rem;
           margin-right: 0.5rem;
           cursor: pointer;
+          filter: brightness(120%); // Adjust the brightness to make it more pronounced
           background-color: white;
           // Red border
           border: 2px solid red;
@@ -65,5 +66,3 @@
       }
     }
   }
-  
-  
