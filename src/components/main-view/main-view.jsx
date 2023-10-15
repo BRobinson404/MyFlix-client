@@ -281,7 +281,6 @@ export const MainView = () => {
 <Route
           path="/movies"
           element={
-            <>
               <Container>
                 <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
                   {loading ? (
@@ -301,14 +300,12 @@ export const MainView = () => {
                   )}
                 </Row>
               </Container>
-            </>
           }
         />
 
         <Route
           path="/"
           element={
-            <>
               <Container>
                 <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
                   {loading ? (
@@ -328,7 +325,6 @@ export const MainView = () => {
                   )}
                 </Row>
               </Container>
-            </>
           }
         />
 
