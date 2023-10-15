@@ -262,7 +262,7 @@ export const MainView = () => {
               {storedUser && movies.length === 0 ? (
                 <Col>The list is empty!</Col>
               ) : storedUser ? (
-                <Col xs={12}>
+                <Col>
                   <MovieView
                     movies={movies}
                     user={user}
@@ -283,7 +283,7 @@ export const MainView = () => {
           element={
             <>
               <Container>
-                <Row xs={1} sm={2} md={3} lg={4} className="justify-content-center">
+                <Row className="justify-content-center">
                   {loading ? (
                     <Spinner animation="border" role="status">
                       <span className="visually-hidden">Loading...</span>
@@ -292,10 +292,10 @@ export const MainView = () => {
                     <p>No movies found</p>
                   ) : (
                     filteredMovies.map((movie) => (
-                      <Col className="mb-4" key={movie.id} md={4}>
+                      <Col className="mb-4" key={movie.id}>
                         <div>
                           <Link to={`/movies/${movie.id}`} className="movie-link">
-                            <MovieCard movie={movie} />
+                            <MovieCard movie={movie}/>
                           </Link>
                         </div>
                       </Col>
@@ -321,7 +321,7 @@ export const MainView = () => {
                     <p>No movies found</p>
                   ) : (
                     filteredMovies.map((movie) => (
-                      <Col className="mb-4" key={movie.id} md={4}>
+                      <Col className="mb-4" key={movie.id}>
                         <div>
                           <Link to={`/movies/${movie.id}`} className="movie-link">
                             <MovieCard movie={movie} />
