@@ -1,4 +1,25 @@
+.Container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
 .movie-card {
+  flex-basis: 23%; // Set the basis for 4 cards per row
+
+  @media (max-width: 1200px) {
+    flex-basis: 30%; // Adjust the basis for 3 cards per row on smaller screens
+  }
+
+  @media (max-width: 900px) {
+    flex-basis: 48%; // Adjust the basis for 2 cards per row on even smaller screens
+  }
+
+  @media (max-width: 600px) {
+    flex-basis: 100%; // Set the basis to 100% for 1 card per row on the smallest screens
+  }
+
   width: 100%;
 
   img {
@@ -12,6 +33,7 @@
     transform: scale(1.02);
   }
 }
+
 
 .favorite-button.btn.btn-primary {
   color: white;
@@ -68,16 +90,16 @@
     align-items: center;
     background-color: #202020;
     border: none;
-    padding: 8px 0px;
+    padding: 8px 0;
 
     a {
       color: white;
       text-decoration: none;
-      transition: transform 0.3s ease-in-out; /* Use the transform animation for hover */
+      transition: transform 0.3s ease-in-out;
       font-size: large;
 
       &:hover {
-        transform: scale(1.05); /* Increase the scale on hover */
+        transform: scale(1.05);
       }
     }
 
@@ -94,3 +116,4 @@
     }
   }
 }
+
