@@ -44,18 +44,11 @@
             margin-right: 0.5rem;
             cursor: pointer;
             filter: brightness(120%); // Adjust the brightness to make it more pronounced
-          
+            background-color: white;
             // Red border
             border: 2px solid red;
+            border-radius: 50%;
           
-            // or White border
-            // border: 2px solid white;
-            // border-radius: 50%;
-          
-            &:hover {
-              // Adjust styles for hover if needed
-              filter: brightness(150%); // Increase brightness on hover
-            }
           }
 
         button {
