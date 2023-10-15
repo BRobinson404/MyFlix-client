@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Row, Col, Button } from 'react-bootstrap';
+import './movie-view.scss';
 
 export const MovieView = ({ movies, user, onAddFavorite }) => {
   const { id } = useParams();
@@ -30,7 +31,7 @@ export const MovieView = ({ movies, user, onAddFavorite }) => {
 
           <Row className="row-title">
             <Col>
-              <span>Description: {movie.Description}</span>
+              <span>Description: {movie.Descriptions}</span>
             </Col>
           </Row>
 

@@ -1,0 +1,24 @@
+.MovieView {
+    .row-title {
+      margin-bottom: 10px;
+  
+      span {
+        font-size: 1.2em; // Increase the font size of spans
+        margin-right: 20px; // Add spacing between spans
+      }
+    }
+  
+    .button-row {
+      margin-top: 20px; // Add space above the buttons
+  
+      a {
+        margin-right: 10px; // Add space between the "Back" button and the "Favorite" button
+      }
+  
+      button {
+        font-size: 1.2em; // Increase the font size of the button text
+        margin-right: 10px; // Add space between the buttons
+      }
+    }
+  }
+  
