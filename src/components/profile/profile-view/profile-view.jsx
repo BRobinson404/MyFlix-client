@@ -99,6 +99,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
   };
 
   const filteredMovies = movies && movies.filter(movie => favoriteMovies.includes(movie.id));
+  const trashCanIconUrl = 'https://www.svgrepo.com/show/10777/trash-can-with-cover.svg';
 
   return (
     <div className="profile-container">
@@ -134,13 +135,13 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
           {filteredMovies.map((movie) => (
             <ListGroup.Item key={movie.id}>
               <Link to={`/movies/${movie.id}`}>{movie.Title}</Link>
-              <Button
-                variant="danger"
-                onClick={() => handleRemoveFavorite(movie.id)}
-                className="ml-2"
-              >
-                x
-              </Button>
+              <img
+              src={trashCanIconUrl}
+              alt="Remove"
+              className="trash-can-icon"
+              style={{ width: '20px', height: '20px', marginLeft: '0.5rem', cursor: 'pointer' }}
+              onClick={() => handleRemoveFavorite(movie.id)}
+            />
             </ListGroup.Item>
           ))}
         </ListGroup>
@@ -155,7 +156,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
 
         <Col xl={6} className="deregister-btn-col">
           <Button variant="danger" onClick={handleDeregister}>
-            Deregister
+            Delete Account
           </Button>
         </Col>
       </Row>
