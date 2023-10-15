@@ -1,69 +1,69 @@
 .profile-container {
-    * {
-      background-color: #202020;
-      color: white;
+  * {
+    background-color: #202020;
+    color: white;
+  }
+
+  .profile-form,
+  .signup-form {
+    width: 50%;
+    margin-bottom: 20px; // Add margin at the bottom
+  }
+
+  .update-btn-col,
+  .deregister-btn-col {
+    padding-top: 50px;
+  }
+
+  .favorite-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px; // Add margin at the top
+
+    .list-group-item {
       display: flex;
-    }
-  
-    .profile-form,
-    .signup-form {
-      width: 50%;
-      margin-bottom: auto; // Add margin at the bottom
-    }
-  
-    .update-btn-col,
-    .deregister-btn-col {
-      padding-top: 50px;
-    }
-  
-    .favorite-list {
-      list-style-type: none;
-      padding: 0;
-      margin-top: auto; // Add margin at the top
-  
-      .list-group-item {
+      align-items: center;
+      background-color: #202020;
+      border: none;
+      padding: 8px 0px;
+
+      a {
+        color: white;
+        text-decoration: none;
+        transition: transform 0.3s ease-in-out;
+        font-size: large;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+
+      .trash-can-icon {
+        width: 24px;
+        height: 24px;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        cursor: pointer;
+        filter: brightness(120%); // Adjust the brightness to make it more pronounced
+        background-color: white;
+        // Red border
+        border: 2px solid red;
+        border-radius: 50%;
+        padding: 2px;
+      }
+
+      button {
+        margin-left: 0.5rem;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        padding: 0;
         display: flex;
+        justify-content: center;
         align-items: center;
-        background-color: #202020;
-        border: none;
-        padding: 8px 0px;
-  
-        a {
-          color: white;
-          text-decoration: none;
-          transition: transform 0.3s ease-in-out;
-          font-size: large;
-  
-          &:hover {
-            transform: scale(1.05);
-          }
-        }
-  
-        .trash-can-icon {
-          width: 24px;
-          height: 24px;
-          margin-left: 0.5rem;
-          margin-right: 0.5rem;
-          cursor: pointer;
-          filter: brightness(120%); // Adjust the brightness to make it more pronounced
-          background-color: white;
-          // Red border
-          border: 2px solid red;
-          border-radius: 50%;
-          padding: 2px;
-        }
-  
-        button {
-          margin-left: 0.5rem;
-          border-radius: 50%;
-          width: 30px;
-          height: 30px;
-          padding: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-weight: bold;
-        }
+        font-weight: bold;
       }
     }
   }
+
+}
