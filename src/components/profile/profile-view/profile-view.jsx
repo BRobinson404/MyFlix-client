@@ -134,7 +134,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
         <ListGroup className="favorite-list">
           {filteredMovies.map((movie) => (
             <ListGroup.Item key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.Title}</Link>
               <img
               src={trashCanIconUrl}
               alt="Remove"
@@ -142,6 +141,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
               style={{ width: '20px', height: '20px', marginLeft: '0.5rem', cursor: 'pointer' }}
               onClick={() => handleRemoveFavorite(movie.id)}
             />
+              <Link to={`/movies/${movie.id}`}>{movie.Title}</Link>
             </ListGroup.Item>
           ))}
         </ListGroup>
