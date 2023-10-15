@@ -34,22 +34,6 @@
   font-size: x-large;
 }
 
-.MovieView {
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  height: 100vh;
-
-  .row-title {
-    display: flex;
-    margin-bottom: 10px;
-
-    span:first-child {
-      font-weight: bold;
-    }
-  }
-}
-
 .profile-form .signup-form {
   width: 50%;
 }
