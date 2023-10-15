@@ -5,7 +5,7 @@ import './movie-view.scss';
 
 export const MovieView = ({ movies, user, onAddFavorite }) => {
   const { id } = useParams();
-  const movie = movies.length ? movies.find((movie) => movie._id.$oid === id) : null;
+  const movie = movies.length ? movies.find((movie) => movie.id === id) : null;
 
   const handleAddFavorite = () => {
     onAddFavorite(movie, user);
