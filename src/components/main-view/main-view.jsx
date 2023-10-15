@@ -258,7 +258,7 @@ export const MainView = () => {
         <Route
           path="/movies/:id"
           element={
-            <>
+            <>  
               {storedUser && movies.length === 0 ? (
                 <Col>The list is empty!</Col>
               ) : storedUser ? (
@@ -283,7 +283,7 @@ export const MainView = () => {
           element={
             <>
               <Container>
-                <Row className="justify-content-center">
+              <Row xs={1} sm={2} md={3} lg={4} className="justify-content-center">
                   {loading ? (
                     <Spinner animation="border" role="status">
                       <span className="visually-hidden">Loading...</span>
