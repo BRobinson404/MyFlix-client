@@ -278,12 +278,12 @@ export const MainView = () => {
           }
         />
 
-        <Route
+<Route
           path="/movies"
           element={
             <>
               <Container>
-                <Row className="justify-content-center">
+                <Row xs={1} sm={2} md={3} lg={4} className="justify-content-center g-4">
                   {loading ? (
                     <Spinner animation="border" role="status">
                       <span className="visually-hidden">Loading...</span>
@@ -292,12 +292,10 @@ export const MainView = () => {
                     <p>No movies found</p>
                   ) : (
                     filteredMovies.map((movie) => (
-                      <Col className="mb-4" key={movie.id}>
-                        <div>
-                          <Link to={`/movies/${movie.id}`} className="movie-link">
-                            <MovieCard movie={movie}/>
-                          </Link>
-                        </div>
+                      <Col key={movie.id}>
+                        <Link to={`/movies/${movie.id}`} className="movie-link">
+                          <MovieCard movie={movie} />
+                        </Link>
                       </Col>
                     ))
                   )}
@@ -312,7 +310,7 @@ export const MainView = () => {
           element={
             <>
               <Container>
-                <Row className="justify-content-center">
+                <Row xs={1} sm={2} md={3} lg={4} className="justify-content-center g-4">
                   {loading ? (
                     <Spinner animation="border" role="status">
                       <span className="visually-hidden">Loading...</span>
@@ -321,12 +319,10 @@ export const MainView = () => {
                     <p>No movies found</p>
                   ) : (
                     filteredMovies.map((movie) => (
-                      <Col className="mb-4" key={movie.id}>
-                        <div>
-                          <Link to={`/movies/${movie.id}`} className="movie-link">
-                            <MovieCard movie={movie} />
-                          </Link>
-                        </div>
+                      <Col key={movie.id}>
+                        <Link to={`/movies/${movie.id}`} className="movie-link">
+                          <MovieCard movie={movie} />
+                        </Link>
                       </Col>
                     ))
                   )}
