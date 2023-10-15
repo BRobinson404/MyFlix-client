@@ -36,22 +36,20 @@
             transform: scale(1.05);
           }
         }
-
+  
         .trash-can-icon {
-            width: 24px;
-            height: 24px;
-            margin-left: 0.5rem;
-            margin-right: 0.5rem;
-            cursor: pointer;
-            filter: brightness(120%); // Adjust the brightness to make it more pronounced
-            background-color: white;
-            // Red border
-            border: 2px solid red;
-            border-radius: 50%;
-            padding: 2px
-          
-          }
-
+          width: 24px;
+          height: 24px;
+          margin-left: 0.5rem;
+          margin-right: 0.5rem;
+          cursor: pointer;
+          background-color: white;
+          // Red border
+          border: 2px solid red;
+          border-radius: 50%;
+          padding: 2px;
+        }
+  
         button {
           margin-left: 0.5rem;
           border-radius: 50%;
@@ -65,5 +63,8 @@
         }
       }
     }
+  
+    margin-bottom: 20px;
   }
+  
   
