@@ -106,6 +106,7 @@ export const MainView = () => {
             },
             Director: {
               Name: movie.Director.Name,
+              Bio: movie.Director.Bio,
             },
             Featured: movie.Featured,
           };
