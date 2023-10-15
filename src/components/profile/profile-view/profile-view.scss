@@ -2,12 +2,13 @@
     * {
       background-color: #202020;
       color: white;
+      display: flex;
     }
   
     .profile-form,
     .signup-form {
       width: 50%;
-      margin-bottom: 20px; // Add margin at the bottom
+      margin-bottom: auto; // Add margin at the bottom
     }
   
     .update-btn-col,
@@ -18,7 +19,7 @@
     .favorite-list {
       list-style-type: none;
       padding: 0;
-      margin-top: 20px; // Add margin at the top
+      margin-top: auto; // Add margin at the top
   
       .list-group-item {
         display: flex;
