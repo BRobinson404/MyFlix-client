@@ -138,7 +138,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
               src={trashCanIconUrl}
               alt="Remove"
               className="trash-can-icon"
-              style={{ width: '20px', height: '20px', marginLeft: '0.5rem', cursor: 'pointer' }}
               onClick={() => handleRemoveFavorite(movie.id)}
             />
               <Link to={`/movies/${movie.id}`}>{movie.Title}</Link>
