@@ -12,10 +12,24 @@
     transform: scale(1.02);
   }
 }
+
 * {
   background-color: #202020;
   color: white;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out;
+  font-size: large;
+
+  &:hover {
+    transform: scale(1.05);
+    
+  }
+}
+
 @media (min-width: 576px) {
   .movie-card {
     width: 50%;
