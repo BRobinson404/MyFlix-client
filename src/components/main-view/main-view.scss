@@ -13,18 +13,6 @@
   }
 }
 
-@media (min-width: 576px) {
-  .movie-card {
-    width: 50%;
-  }
-}
-
-@media (min-width: 768px) {
-  .movie-card {
-    width: 33.33%;
-  }
-}
-
 .favorite-button.btn.btn-primary {
   color: white;
 }
@@ -44,6 +32,22 @@
   text-decoration-color: #202020;
   border: none;
   font-size: x-large;
+}
+
+.MovieView {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  height: 100vh;
+
+  .row-title {
+    display: flex;
+    margin-bottom: 10px;
+
+    span:first-child {
+      font-weight: bold;
+    }
+  }
 }
 
 .profile-form .signup-form {
