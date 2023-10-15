@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Form, ListGroup, Row, Col } from 'react-bootstrap';
-import './ProfileView.scss'; // Import the SCSS file
+import './profile-view.scss'; // Import the SCSS file
 
 export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
   const [username, setUsername] = useState("");
