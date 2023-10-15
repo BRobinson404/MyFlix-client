@@ -59,15 +59,14 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
               <Dropdown.Menu>
                 <Dropdown.Item onClick={() => handleGenreFilter('')}>All Genres</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleGenreFilter('Crime')}>Crime</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Science Fiction')}>
-                  Science Fiction
-                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleGenreFilter('Science Fiction')}>Science Fiction</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleGenreFilter('Comedy-drama')}>Comedy-drama</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleGenreFilter('Superhero')}>Superhero</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleGenreFilter('Action')}>Action</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleGenreFilter('Drama')}>Drama</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleGenreFilter('Horror')}>Horror</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleGenreFilter('Thriller')}>Thriller</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleGenreFilter('Romance')}>Romance</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Nav>
