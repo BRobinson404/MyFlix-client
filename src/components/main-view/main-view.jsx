@@ -316,7 +316,7 @@ export const MainView = () => {
                     <p>No movies found</p>
                   ) : (
                     filteredMovies.map((movie) => (
-                      <Col key={movie.id}>
+                      <Col key={movie.id} className="my-3">
                         <Link to={`/movies/${movie.id}`} className="movie-link">
                           <MovieCard movie={movie} />
                         </Link>
