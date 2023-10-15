@@ -1,6 +1,8 @@
+// ProfileView.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Form, ListGroup, Row, Col } from 'react-bootstrap';
+import './ProfileView.scss'; // Import the SCSS file
 
 export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
   const [username, setUsername] = useState("");
@@ -72,7 +74,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
     }
   };
   
-
   const handleRemoveFavorite = async (movieId) => {
     try {
       const response = await fetch(
@@ -100,7 +101,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
   const filteredMovies = movies && movies.filter(movie => favoriteMovies.includes(movie.id));
 
   return (
-    <div>
+    <div className="profile-container">
       <h1>Profile</h1>
 
       <Form className="profile-form">
@@ -125,10 +126,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
         </Form.Group>
       </Form>
 
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
       <h2>Favorite Movies</h2>
       {filteredMovies && filteredMovies.length === 0 ? (
         <p>No favorite movies found.</p>
@@ -148,24 +145,20 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
           ))}
         </ListGroup>
       )}
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <Row>
-        <Col className='update-btn-col'  xl={2}>
-          <Button variant="primary" onClick={handleUpdateUser} >
+
+      <Row className="button-row">
+        <Col xl={6} className="update-btn-col">
+          <Button variant="primary" onClick={handleUpdateUser}>
             Save Changes
           </Button>
         </Col>
 
-        <Col className='deregister-btn-col'>
-          <Button variant="danger" onClick={handleDeregister} >
+        <Col xl={6} className="deregister-btn-col">
+          <Button variant="danger" onClick={handleDeregister}>
             Deregister
           </Button>
         </Col>
       </Row>
-
     </div>
   );
 };
