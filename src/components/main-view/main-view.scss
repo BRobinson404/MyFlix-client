@@ -57,11 +57,11 @@
     a {
       color: white;
       text-decoration: none;
-      transition: transform 0.3s ease-in-out; /* Use the transform animation for hover */
+      transition: transform 0.3s ease-in-out;
       font-size: large;
 
       &:hover {
-        transform: scale(1.05); /* Increase the scale on hover */
+        transform: scale(1.05);
       }
     }
 
@@ -76,5 +76,12 @@
       align-items: center;
       font-weight: bold;
     }
+  }
+}
+
+/* Responsive styles for movie cards */
+@media (max-width: 576px) {
+  .movie-card {
+    width: 100%;
   }
 }
