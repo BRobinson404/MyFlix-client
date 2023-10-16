@@ -16,7 +16,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
   };
 
   return (
-    <Navbar className="navigation-bar" variant="dark">
+    <Navbar className="navigation-bar" variant="dark" expand="xl">
       <Navbar.Brand as={Link} to="/">
         MyFlix
       </Navbar.Brand>
