@@ -169,6 +169,7 @@ export const MainView = () => {
   if (!user) {
     return (
       <BrowserRouter>
+        {/* Navigation bar */}
         <NavigationBar
           user={user}
           onLoggedOut={() => {
@@ -177,110 +178,30 @@ export const MainView = () => {
             localStorage.clear();
           }}
           onGenreFilter={handleGenreFilter} // Pass the handleGenreFilter function as a prop
-        />
-        <Container>
-          <Row>
-            <Col>
-              <Routes>
-                <Route
-                  path="/login"
-                  element={
-                    <LoginView
-                      onLoggedIn={(user, token) => {
-                        setUser(user);
-                        setToken(token);
-                      }}
-                    />
-                  }
-                />
-                <Route path="/signup" element={<SignupView />} />
-              </Routes>
-            </Col>
-          </Row>
-        </Container>
-      </BrowserRouter>
-    );
-  }
-
-  if (movies.length === 0) {
-    return (
-      <BrowserRouter>
-        <NavigationBar
-          user={user}
-          onLoggedOut={() => {
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
-          }}
-          onGenreFilter={handleGenreFilter} // Pass the handleGenreFilter function as a prop
-        />
-        <Container>
-          <Row>
-            <Col>
-              <Button
-                onClick={() => {
-                  setUser(null);
-                  setToken(null);
-                  localStorage.clear();
-                }}
-              >
-                Logout
-              </Button>
-            </Col>
-            <Col>
-              <div>No movies found</div>
-            </Col>
-          </Row>
-        </Container>
-      </BrowserRouter>
-    );
-  }
-
-  return (
-    <BrowserRouter>
-      <NavigationBar
-        user={user}
-        onLoggedOut={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}
-        onGenreFilter={handleGenreFilter} // Pass the handleGenreFilter function as a prop
-      >
-        {user && (
-          <Link to={`/users/${user.Username}`} className="profile-link">
-            Profile
-          </Link>
-        )}
-      </NavigationBar>
-
-      <Routes>
-        <Route
-          path="/movies/:id"
-          element={
-            <>  
-              {storedUser && movies.length === 0 ? (
-                <Col>The list is empty!</Col>
-              ) : storedUser ? (
-                <Col>
-                  <MovieView
-                    movies={movies}
-                    user={user}
-                    storedUser={storedUser}
-                    storedToken={storedToken}
-                    onAddFavorite={handleAddFavorite}
-                  />
-                </Col>
-              ) : (
-                <Navigate to="/login" />
-              )}
-            </>
-          }
-        />
-
-<Route
-          path="/movies"
-          element={
+        >
+          {user && (
+            <Link to={`/users/${user.Username}`} className="profile-link">
+              Profile
+            </Link>
+          )}
+        </NavigationBar>
+  
+        {/* Routes */}
+        <Routes>
+          {/* Movie details route */}
+          <Route
+            path="/movies/:id"
+            element={
+              <>  
+                {/* Your existing code */}
+              </>
+            }
+          />
+  
+          {/* Movies route */}
+          <Route
+            path="/movies"
+            element={
               <Container>
                 <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
                   {loading ? (
@@ -300,12 +221,13 @@ export const MainView = () => {
                   )}
                 </Row>
               </Container>
-          }
-        />
-
-        <Route
-          path="/"
-          element={
+            }
+          />
+  
+          {/* Default route */}
+          <Route
+            path="/"
+            element={
               <Container>
                 <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
                   {loading ? (
@@ -325,37 +247,41 @@ export const MainView = () => {
                   )}
                 </Row>
               </Container>
-          }
-        />
-
-        <Route
-          path="/users/:username"
-          element={
-            <ProfileView
-              user={user}
-              movies={movies}
-              onUpdateUser={handleUpdateUser}
-              onDeregister={handleDeregister}
-              onAddFavorite={handleAddFavorite}
-              onRemoveFavorite={handleRemoveFavorite}
-            />
-          }
-        />
-
-        <Route
-          path="/login"
-          element={
-            <LoginView
-              onLoggedIn={(user, token) => {
-                setUser(user);
-                setToken(token);
-              }}
-            />
-          }
-        />
-
-        <Route path="/signup" element={<SignupView />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
+            }
+          />
+  
+          {/* User profile route */}
+          <Route
+            path="/users/:username"
+            element={
+              <ProfileView
+                user={user}
+                movies={movies}
+                onUpdateUser={handleUpdateUser}
+                onDeregister={handleDeregister}
+                onAddFavorite={handleAddFavorite}
+                onRemoveFavorite={handleRemoveFavorite}
+              />
+            }
+          />
+  
+          {/* Login route */}
+          <Route
+            path="/login"
+            element={
+              <LoginView
+                onLoggedIn={(user, token) => {
+                  setUser(user);
+                  setToken(token);
+                }}
+              />
+            }
+          />
+  
+          {/* Signup route */}
+          <Route path="/signup" element={<SignupView />} />
+        </Routes>
+      </BrowserRouter>
+    );
+  };
+}
