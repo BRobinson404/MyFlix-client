@@ -18,44 +18,20 @@ export const MovieView = ({ movies, user, onAddFavorite }) => {
 
   return (
     <div className="MovieView">
-      <Row>
-        <Col md={4}>
+    <div className="movie-container">
+      <Row className="movie-row">
+        <Col md={6} className="image-col d-flex align-items-center justify-content-center">
           <img src={movie.ImagePath} className="img-fluid" alt="Movie Poster" />
         </Col>
 
-        <Col md={8}>
-          <Row className="row-title">
-            <Col>
-              <h2>{movie.Title}</h2>
-            </Col>
-          </Row>
-
-          <Row className="row-title">
-            <Col>
-              <span>Description: {movie.Descriptions}</span>
-            </Col>
-          </Row>
-
-          <Row className="row-title">
-            <Col>
-              <span>Genre: {movie.Genre.Name}</span>
-            </Col>
-          </Row>
-
-          <Row className="row-title">
-            <Col>
-              <span>Director: {movie.Director.Name}</span>
-            </Col>
-          </Row>
-
-          <Row className="row-title">
-            <Col>
-              <span>Director Bio: {movie.Director.Bio}</span>
-            </Col>
-          </Row>
-
-          <Row className="button-row">
-            <Col>
+        <Col md={6} className="info-col d-flex align-items-center">
+          <div>
+            <h2>{movie.Title}</h2>
+            <p>Description: {movie.Descriptions}</p>
+            <p>Genre: {movie.Genre.Name}</p>
+            <p>Director: {movie.Director.Name}</p>
+            <p>Director Bio: {movie.Director.Bio}</p>
+            <div>
               <Link to="/movies" className="btn btn-primary">
                 Back
               </Link>
@@ -64,10 +40,11 @@ export const MovieView = ({ movies, user, onAddFavorite }) => {
                   Favorite &#x2665;
                 </Button>
               )}
-            </Col>
-          </Row>
+            </div>
+          </div>
         </Col>
       </Row>
     </div>
-  );
+  </div>
+);
 };

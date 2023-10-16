@@ -1,23 +1,33 @@
 .MovieView {
-    .row-title {
-      margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
   
-      span {
-        font-size: 1.2em; // Increase the font size of spans
-        margin-right: 20px; // Add spacing between spans
-      }
-    }
+  .movie-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+  }
   
-    .button-row {
-      margin-top: 20px; // Add space above the buttons
+  .movie-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
   
-      a {
-        margin-right: 10px; // Add space between the "Back" button and the "Favorite" button
-      }
+  .image-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
-      button {
-        margin-right: 10px; // Add space between the buttons
-      }
-    }
+  .info-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
