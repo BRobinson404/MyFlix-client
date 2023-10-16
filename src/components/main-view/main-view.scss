@@ -1,25 +1,26 @@
-.favorite-button.btn.btn-primary {
-  color: white;
-}
+// General styles
+$primary-color: #202020;
+$accent-color: white;
 
 * {
-  background-color: #202020;
-  color: white;
+  background-color: $primary-color;
+  color: $accent-color;
 }
 
 .navigation-bar {
-  background-color: #202020;
+  background-color: $primary-color;
 }
 
+// Card styles
 .card-title.my-auto {
-  color: white;
+  color: $accent-color;
   text-decoration: underline;
-  text-decoration-color: #202020;
+  text-decoration-color: $primary-color;
   border: none;
   font-size: x-large;
 }
 
-
+// Form styles
 .profile-form .signup-form {
   width: 50%;
 }
@@ -29,6 +30,7 @@
   padding-top: 50px;
 }
 
+// Favorite list styles
 .favorite-list {
   list-style-type: none;
   padding: 0;
@@ -36,12 +38,12 @@
   .list-group-item {
     display: flex;
     align-items: center;
-    background-color: #202020;
+    background-color: $primary-color;
     border: none;
     padding: 8px 0;
 
     a {
-      color: white;
+      color: $accent-color;
       text-decoration: none;
       transition: transform 0.3s ease-in-out;
       font-size: large;
@@ -65,3 +67,7 @@
   }
 }
 
+// Button styles
+.favorite-button.btn.btn-primary {
+  color: $accent-color;
+}
