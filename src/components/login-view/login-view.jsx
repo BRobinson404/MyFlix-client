@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { Row, Col } from 'react-bootstrap';
 
 export const LoginView = ({ onLoggedIn }) => {
   const navigate = useNavigate();
@@ -42,38 +41,42 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength="3"
-        />
-      </Form.Group>
+    <Container className="mt-5">
+      <Row className="justify-content-center">
+        <Col xs={10} sm={8} md={6} lg={4}>
+          <Form onSubmit={handleSubmit} className="p-4 shadow">
+            <h2 className="mb-4 text-center">Login</h2>
+            <Form.Group controlId="formUsername">
+              <Form.Label>Username:</Form.Label>
+              <Form.Control
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                minLength="3"
+              />
+            </Form.Group>
 
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </Form.Group>
-      <Row>
-        <Col xs={{ offset: 4 }} className="mt-2">
-          <Button variant="primary" type="submit" className="align-self-center">
-            Submit
-          </Button>
+            <Form.Group controlId="formPassword">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+
+            <Button variant="primary" type="submit" className="w-100 mt-3">
+              Submit
+            </Button>
+
+            <p className="mt-3 text-center">
+              Don't have an account? <Link to="/signup">Sign Up</Link>
+            </p>
+          </Form>
         </Col>
-        <Col xs={3}>
-          <Link to="/signup">I don't have an account.</Link>
-        </Col>
-        <Col xs={{ offset: 2 }}></Col>
       </Row>
-    </Form>
+    </Container>
   );
 };
