@@ -64,6 +64,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
           );
           if (response.ok) {
             console.log("User deregistered successfully");
+            window.location.href = '/login';
           } else {
             const errorMessage = await response.text();
             console.error(`Failed to deregister user: ${errorMessage}`);
