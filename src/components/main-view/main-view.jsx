@@ -293,18 +293,18 @@ export const MainView = () => {
             ) : (
               <Row xs={1} sm={2} md={3} lg={4} className="g-4">
                 {filteredMovies.map((movie) => (
-                  <div key={movie.id}>
+                  <Col key={movie.id} style={{ marginBottom: "20px" }}>
                     <Link to={`/movies/${movie.id}`} className="movie-link">
                       <MovieCard movie={movie} />
                     </Link>
-                  </div>
+                  </Col>
                 ))}
               </Row>
             )}
           </Container>
         }
       />
-        <Route
+      <Route
         path="/"
         element={
           <Container>
@@ -317,11 +317,11 @@ export const MainView = () => {
             ) : (
               <Row xs={1} sm={2} md={3} lg={4} className="g-4">
                 {filteredMovies.map((movie) => (
-                  <div key={movie.id}>
+                  <Col key={movie.id} style={{ marginBottom: "20px" }}>
                     <Link to={`/movies/${movie.id}`} className="movie-link">
                       <MovieCard movie={movie} />
                     </Link>
-                  </div>
+                  </Col>
                 ))}
               </Row>
             )}
