@@ -69,7 +69,7 @@ export const ProfileView = ({ user, movies, onUpdateUser }) => {
             setUser(null);
             setToken(null);
             localStorage.clear();
-            window.location.href = '/login'
+            window.location.href = '/login';
           } else {
             const errorMessage = await response.text();
             console.error(`Failed to deregister user: ${errorMessage}`);
@@ -82,6 +82,7 @@ export const ProfileView = ({ user, movies, onUpdateUser }) => {
       console.log("User cancellation confirmed.");
     }
   };
+  
   
   
   
