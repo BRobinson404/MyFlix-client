@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button, Form, ListGroup, Row, Col } from 'react-bootstrap';
 import './profile-view.scss'; // Import the SCSS file
 
-export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
+export const ProfileView = ({ user, movies, onUpdateUser, onDeregister, setUser, setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -17,7 +17,66 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
     setEmail(user.Email);
     setBirthday(user.Birthday);
     setFavoriteMovies(user.FavoriteMovies);
-  }, [user]); 
+  }, [user]);
+
+  const handleUpdateUser = async () => {
+    const updatedUser = {
+      ...user,
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday.split("T")[0],
+    };
+
+    try {
+      const response = await fetch(
+        `https://myflix404.herokuapp.com/users/${user.Username}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedUser),
+        }
+      );
+      const data = await response.json();
+
+      onUpdateUser(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  
+  const handleDeregister = async () => {
+    const confirmed = window.confirm("Are you sure you want to deregister?");
+  
+    if (confirmed) {
+      try {
+        const response = await fetch(
+          `https://myflix404.herokuapp.com/users/${user.Username}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+  
+        if (response.ok) {
+          console.log("User deregistered successfully");
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        } else {
+          console.error("Failed to deregister user");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
   
   const handleRemoveFavorite = async (movieId) => {
     try {
@@ -93,7 +152,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
 
       <Row className="button-row">
         <Col xl={6} className="update-btn-col">
-          <Button variant="primary" onClick={onUpdateUser}>
+          <Button variant="primary" onClick={handleUpdateUser}>
             Save Changes
           </Button>
         </Col>
