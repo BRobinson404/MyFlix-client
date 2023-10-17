@@ -349,6 +349,8 @@ export const MainView = () => {
               onDeregister={handleDeregister}
               onAddFavorite={handleAddFavorite}
               onRemoveFavorite={handleRemoveFavorite}
+              setUser={setUser}
+              setToken={setToken}
             />
           }
         />
