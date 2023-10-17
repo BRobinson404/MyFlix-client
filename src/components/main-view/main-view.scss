@@ -12,8 +12,8 @@ $accent-color: white;
 
   // Adjust navigation bar for smaller screens
   @media screen and (max-width: 768px) {
-    height: 80px; /* Adjust the height as needed */
-    font-size: 1.5rem; /* Adjust the font size as needed */
+    height: 100px; /* Adjust the height as needed */
+    font-size: x-large; /* Adjust the font size as needed */
   }
 }
 
@@ -28,7 +28,7 @@ $accent-color: white;
 
   // Adjust movie title for smaller screens
   @media screen and (max-width: 768px) {
-    font-size: 1.2rem; /* Adjust the font size as needed */
+    font-size: x-large; /* Adjust the font size as needed */
   }
 }
 
