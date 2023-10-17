@@ -180,7 +180,7 @@ export const MainView = () => {
             setToken(null);
             localStorage.clear();
           }}
-          onGenreFilter={handleGenreFilter} // Pass the handleGenreFilter function as a prop
+          onGenreFilter={handleGenreFilter}
         />
         <Container>
           <Row>
@@ -216,7 +216,7 @@ export const MainView = () => {
             setToken(null);
             localStorage.clear();
           }}
-          onGenreFilter={handleGenreFilter} // Pass the handleGenreFilter function as a prop
+          onGenreFilter={handleGenreFilter}
         />
         <Container>
           <Row>
@@ -249,7 +249,7 @@ export const MainView = () => {
           setToken(null);
           localStorage.clear();
         }}
-        onGenreFilter={handleGenreFilter} // Pass the handleGenreFilter function as a prop
+        onGenreFilter={handleGenreFilter}
       >
         {user && (
           <Link to={`/users/${user.Username}`} className="profile-link">
@@ -257,7 +257,6 @@ export const MainView = () => {
           </Link>
         )}
       </NavigationBar>
-
       <Routes>
         <Route
           path="/movies/:id"
@@ -281,7 +280,6 @@ export const MainView = () => {
             </>
           }
         />
-
         <Route
           path="/movies"
           element={
@@ -310,7 +308,6 @@ export const MainView = () => {
             </>
           }
         />
-
         <Route
           path="/"
           element={
@@ -339,7 +336,6 @@ export const MainView = () => {
             </>
           }
         />
-
         <Route
           path="/users/:username"
           element={
@@ -355,7 +351,6 @@ export const MainView = () => {
             />
           }
         />
-
         <Route
           path="/login"
           element={
@@ -367,7 +362,6 @@ export const MainView = () => {
             />
           }
         />
-
         <Route path="/signup" element={<SignupView />} />
       </Routes>
     </BrowserRouter>
