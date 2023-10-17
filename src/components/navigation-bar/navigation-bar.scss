@@ -2,28 +2,29 @@ $primary-color: #202020;
 $accent-color: white;
 
 #custom-navigation-bar {
-    @media (min-width: 1200px) {
-      font-size: 2.5rem; /* Adjust the font size for the navigation bar on extra-large screens */
+    @media (max-width: 576px) {
+      font-size: 1.5rem; /* Adjust the font size for the navigation bar on extra-small screens */
     }
   
     #custom-navbar-brand {
-      @media (min-width: 1200px) {
-        font-size: 2.5rem; /* Adjust the font size for the navbar brand on extra-large screens */
+      @media (max-width: 576px) {
+        font-size: 1.5rem; /* Adjust the font size for the navbar brand on extra-small screens */
       }
     }
   
     .navbar-link {
-      @media (min-width: 1200px) {
-        font-size: 2.5rem; /* Adjust the font size for the links in the navbar on extra-large screens */
+      @media (max-width: 576px) {
+        font-size: 1.5rem; /* Adjust the font size for the links in the navbar on extra-small screens */
       }
     }
   
     #custom-dropdown-menu {
       .dropdown-item {
-        @media (min-width: 1200px) {
-          font-size: 2.5rem; /* Adjust the font size for the dropdown items on extra-large screens */
+        @media (max-width: 576px) {
+          font-size: 1.5rem; /* Adjust the font size for the dropdown items on extra-small screens */
         }
       }
     }
   }
+  
    
