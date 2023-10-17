@@ -1,18 +1,60 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navbar, Nav, Button, Dropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 
-export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
+const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
+  const history = useHistory();
+
   const handleLogout = () => {
     onLoggedOut();
-    window.location.href = '/login';
+    history.push('/login');
   };
 
-  const [showGenreFilter, setShowGenreFilter] = useState(false);
+  const renderLinks = () => {
+    if (!user) {
+      return (
+        <>
+          <NavLink to="/" className="navbar-link">
+            Home
+          </NavLink>
+          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/signup">Sign Up</NavLink>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <NavLink to="/" className="navbar-link">
+            Home
+          </NavLink>
+          <NavLink to={`/users/${user.Username}`}>Profile</NavLink>
+          <Nav.Link as={Link} to="/login" onClick={handleLogout}>
+            Logout
+          </Nav.Link>
+        </>
+      );
+    }
+  };
 
-  const handleGenreFilter = (selectedGenre) => {
-    onGenreFilter(selectedGenre);
-    setShowGenreFilter(false);
+  const renderDropdownItems = () => {
+    const genres = [
+      'All Genres',
+      'Crime',
+      'Science Fiction',
+      'Comedy-drama',
+      'Superhero',
+      'Action',
+      'Drama',
+      'Horror',
+      'Thriller',
+      'Romance',
+    ];
+
+    return genres.map((genre, index) => (
+      <Dropdown.Item key={index} onClick={() => handleGenreFilter(genre)}>
+        {genre}
+      </Dropdown.Item>
+    ));
   };
 
   return (
@@ -22,52 +64,14 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
-          {!user && (
-            <>
-              <Nav.Link as={Link} to="/" className="navbar-link">
-                Home
-              </Nav.Link>
-              <Nav.Link as={Link} to="/login">
-                Login
-              </Nav.Link>
-              <Nav.Link as={Link} to="/signup">
-                Sign Up
-              </Nav.Link>
-            </>
-          )}
-          {user && (
-            <>
-              <Nav.Link as={Link} to="/" className="navbar-link">
-                Home
-              </Nav.Link>
-              <Nav.Link as={Link} to={`/users/${user.Username}`}>
-                Profile
-              </Nav.Link>
-              <Nav.Link as={Link} to="/login" onClick={handleLogout}>
-                Logout
-              </Nav.Link>
-            </>
-          )}
-        </Nav>
+        <Nav className="me-auto">{renderLinks()}</Nav>
         {user && (
           <Nav>
-            <Dropdown show={showGenreFilter} onToggle={(isOpen) => setShowGenreFilter(isOpen)}>
+            <Dropdown onToggle={(isOpen) => setShowGenreFilter(isOpen)}>
               <Dropdown.Toggle as={Button} variant="secondary" id="dropdown-genre">
                 Filter Genres
               </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item onClick={() => handleGenreFilter('')}>All Genres</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Crime')}>Crime</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Science Fiction')}>Science Fiction</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Comedy-drama')}>Comedy-drama</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Superhero')}>Superhero</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Action')}>Action</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Drama')}>Drama</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Horror')}>Horror</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Thriller')}>Thriller</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Romance')}>Romance</Dropdown.Item>
-              </Dropdown.Menu>
+              <Dropdown.Menu>{renderDropdownItems()}</Dropdown.Menu>
             </Dropdown>
           </Nav>
         )}
@@ -75,3 +79,5 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
     </Navbar>
   );
 };
+
+export default NavigationBar;
