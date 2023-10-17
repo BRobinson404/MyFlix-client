@@ -81,7 +81,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
       <h1>Profile</h1>
   
       <Row className="justify-content-center">
-        <Col xs={12} md={6}>
+        <Col xs={10} sm={8} md={6}>
           <Form className="profile-form p-4 shadow">
             <Form.Group controlId="formUsername">
               <Form.Label>Username:</Form.Label>
@@ -89,7 +89,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                style={{ width: '100%' }}
               />
             </Form.Group>
   
@@ -99,7 +98,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                style={{ width: '100%' }}
               />
             </Form.Group>
   
@@ -109,7 +107,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                style={{ width: '100%' }}
               />
             </Form.Group>
   
@@ -119,7 +116,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
                 type="date"
                 value={birthday ? birthday.split("T")[0] : ""}
                 onChange={(e) => setBirthday(e.target.value)}
-                style={{ width: '100%' }}
               />
             </Form.Group>
   
@@ -139,7 +135,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
           </Form>
         </Col>
   
-        <Col xs={12} md={6}>
+        <Col xs={10} sm={8} md={6}>
           <h2>Favorite Movies</h2>
           {filteredMovies && filteredMovies.length === 0 ? (
             <p>No favorite movies found.</p>
