@@ -303,30 +303,34 @@ export const MainView = () => {
           }
         />
 
-        <Route
-          path="/"
-          element={
-              <Container>
-                <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
-                  {loading ? (
-                    <Spinner animation="border" role="status">
-                      <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                  ) : !filteredMovies || !filteredMovies.length ? (
-                    <p>No movies found</p>
-                  ) : (
-                    filteredMovies.map((movie) => (
-                      <Col key={movie.id} className="my-3">
-                        <Link to={`/movies/${movie.id}`} className="movie-link">
-                          <MovieCard movie={movie} />
-                        </Link>
-                      </Col>
-                    ))
-                  )}
-                </Row>
-              </Container>
-          }
-        />
+            <Route
+              path="/"
+              element={
+                user ? (
+                  <Container>
+                    <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
+                      {loading ? (
+                        <Spinner animation="border" role="status">
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      ) : !filteredMovies || !filteredMovies.length ? (
+                        <p>No movies found</p>
+                      ) : (
+                        filteredMovies.map((movie) => (
+                          <Col key={movie.id} className="my-3">
+                            <Link to={`/movies/${movie.id}`} className="movie-link">
+                              <MovieCard movie={movie} />
+                            </Link>
+                          </Col>
+                        ))
+                      )}
+                    </Row>
+                  </Container>
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
 
         <Route
           path="/users/:username"
