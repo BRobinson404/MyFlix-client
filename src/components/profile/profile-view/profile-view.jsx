@@ -79,7 +79,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
   return (
     <Container className="profile-container">
   
-      <Row className="mt-2 justify-content-around">
+      <Row className="mt-4 justify-content-around">
       <Col xs={5} md={5} lg={5} className="mx-2">
           <Form>
           <h1>Profile</h1>
@@ -135,7 +135,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
           </Form>
         </Col>
   
-        <Col xs={5} md={5} lg={5} className="mx-2">
+        <Col xs={5} md={5} lg={5} className="mx-2 mt-2">
           <h1>Favorite Movies</h1>
           {filteredMovies && filteredMovies.length === 0 ? (
             <p>No favorite movies found.</p>
