@@ -106,7 +106,7 @@ export const MainView = () => {
             },
             Director: {
               Name: movie.Director.Name,
-              Bio: movie.Director.Bio,
+              Bio: movie.Director.Bio
             },
             Featured: movie.Featured,
           };
@@ -258,11 +258,11 @@ export const MainView = () => {
         <Route
           path="/movies/:id"
           element={
-            <>  
+            <>
               {storedUser && movies.length === 0 ? (
                 <Col>The list is empty!</Col>
               ) : storedUser ? (
-                <Col>
+                <Col xs={12}>
                   <MovieView
                     movies={movies}
                     user={user}
@@ -278,12 +278,12 @@ export const MainView = () => {
           }
         />
 
-<Route
+        <Route
           path="/movies"
           element={
-            user ? (
+            <>
               <Container>
-                <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
+                <Row className="justify-content-center">
                   {loading ? (
                     <Spinner animation="border" role="status">
                       <span className="visually-hidden">Loading...</span>
@@ -292,48 +292,49 @@ export const MainView = () => {
                     <p>No movies found</p>
                   ) : (
                     filteredMovies.map((movie) => (
-                      <Col key={movie.id}>
-                        <Link to={`/movies/${movie.id}`} className="movie-link">
-                          <MovieCard movie={movie} />
-                        </Link>
+                      <Col className="mb-4" key={movie.id} md={4}>
+                        <div>
+                          <Link to={`/movies/${movie.id}`} className="movie-link">
+                            <MovieCard movie={movie} />
+                          </Link>
+                        </div>
                       </Col>
                     ))
                   )}
                 </Row>
               </Container>
-              ) : (
-              <Navigate to="/login" />
-              )
-            }/>
+            </>
+          }
+        />
 
-            <Route
-              path="/"
-              element={
-                user ? (
-                  <Container>
-                    <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
-                      {loading ? (
-                        <Spinner animation="border" role="status">
-                          <span className="visually-hidden">Loading...</span>
-                        </Spinner>
-                      ) : !filteredMovies || !filteredMovies.length ? (
-                        <p>No movies found</p>
-                      ) : (
-                        filteredMovies.map((movie) => (
-                          <Col key={movie.id} className="my-3">
-                            <Link to={`/movies/${movie.id}`} className="movie-link">
-                              <MovieCard movie={movie} />
-                            </Link>
-                          </Col>
-                        ))
-                      )}
-                    </Row>
-                  </Container>
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
+        <Route
+          path="/"
+          element={
+            <>
+              <Container>
+                <Row className="justify-content-center">
+                  {loading ? (
+                    <Spinner animation="border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  ) : !filteredMovies || !filteredMovies.length ? (
+                    <p>No movies found</p>
+                  ) : (
+                    filteredMovies.map((movie) => (
+                      <Col className="mb-4" key={movie.id} md={4}>
+                        <div>
+                          <Link to={`/movies/${movie.id}`} className="movie-link">
+                            <MovieCard movie={movie} />
+                          </Link>
+                        </div>
+                      </Col>
+                    ))
+                  )}
+                </Row>
+              </Container>
+            </>
+          }
+        />
 
         <Route
           path="/users/:username"
