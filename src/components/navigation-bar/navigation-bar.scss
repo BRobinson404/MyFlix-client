@@ -12,7 +12,7 @@ $accent-color: white;
     }
   }
 
-  .navbar-link {
+  .navbar-link.nav-link {
     @media (max-width: 576px) {
       font-size: 1.5rem; /* Adjust the font size for the links in the navbar on extra-small screens */
     }
@@ -25,24 +25,13 @@ $accent-color: white;
       }
     }
   }
+
   @media (max-width: 576px) {
-    #custom-navigation-bar.navbar-collapse {
-      font-size: 1.5rem; /* Adjust the font size for the navigation bar on extra-small screens when collapsed */
-    }
-  
-    #custom-navigation-bar.navbar-collapse #custom-navbar-brand {
-      font-size: 1.5rem; /* Adjust the font size for the navbar brand on extra-small screens when collapsed */
-    }
-  
-    #custom-navigation-bar.navbar-collapse .navbar-link {
+    .navbar-link.nav-link {
       font-size: 1.5rem; /* Adjust the font size for the links in the navbar on extra-small screens when collapsed */
     }
-  
-    #custom-navigation-bar.navbar-collapse #custom-dropdown-menu .dropdown-item {
-      font-size: 1.5rem; /* Adjust the font size for the dropdown items on extra-small screens when collapsed */
-    }
   }
-  
 }
+
 
    
