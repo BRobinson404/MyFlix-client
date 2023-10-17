@@ -51,27 +51,34 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
   const handleDeregister = async () => {
     const confirmed = window.confirm("Are you sure you want to deregister?");
     if (confirmed) {
-      try {
-        const response = await fetch(
-          `https://myflix404.herokuapp.com/users/${user.Username}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
+      setTimeout(async () => {
+        try {
+          const response = await fetch(
+            `https://myflix404.herokuapp.com/users/${user.Username}`,
+            {
+              method: "DELETE",
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          );
+          if (response.ok) {
+            setUser(null); // Update the user state to indicate the user has been deleted
+            console.log("User deregistered successfully");
+          } else {
+            const errorMessage = await response.text();
+            console.error(`Failed to deregister user: ${errorMessage}`);
           }
-        );
-        if (response.ok) {
-          setUser(null);
-          console.log("User deregistered successfully");
-        } else {
-          console.error("Failed to deregister user");
+        } catch (error) {
+          console.error("An error occurred during deregistration:", error);
         }
-      } catch (error) {
-        console.error(error);
-      }
+      }, 0);
+    } else {
+      console.log("User cancellation confirmed.");
     }
   };
+  
+  
   
   
   const handleRemoveFavorite = async (movieId) => {
