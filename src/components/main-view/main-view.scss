@@ -7,22 +7,26 @@ $accent-color: white;
   color: $accent-color;
 }
 
-#custom-navigation-bar {
-  @media screen and (max-width: 576px) { // xs screen size
-    font-size: 2.0rem; // Adjust the navigation bar size for smaller screens
+#custom-navigation-bar.navigation-bar {
+  @media screen and (max-width: 576px) {
+    font-size: 2.0rem; /* Adjust the navigation bar size for smaller screens */
+
     #custom-navbar-brand {
-      font-size: 2.0rem; // Adjust the font size of the navbar brand for smaller screens
+      font-size: 2.0rem; /* Adjust the font size of the navbar brand for smaller screens */
     }
 
     .navbar-link {
-      font-size: 2.0rem; // Adjust the font size of the links in the navbar for smaller screens
+      font-size: 2.0rem; /* Adjust the font size of the links in the navbar for smaller screens */
     }
 
-    .dropdown-item {
-      font-size: 2.0rem; // Adjust the font size of the dropdown items for smaller screens
+    #custom-dropdown-menu {
+      .dropdown-item {
+        font-size: 2.0rem; /* Adjust the font size of the dropdown items for smaller screens */
+      }
     }
   }
 }
+
 
 
 // Card styles
