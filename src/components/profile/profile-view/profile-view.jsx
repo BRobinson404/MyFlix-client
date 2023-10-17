@@ -136,7 +136,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
         </Col>
   
         <Col xs={5} md={5} lg={5} className="mx-2">
-          <h2>Favorite Movies</h2>
+          <h1>Favorite Movies</h1>
           {filteredMovies && filteredMovies.length === 0 ? (
             <p>No favorite movies found.</p>
           ) : (
