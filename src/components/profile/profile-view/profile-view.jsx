@@ -50,7 +50,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
 
   const handleDeregister = async () => {
     const confirmed = window.confirm("Are you sure you want to deregister?");
-  
     if (confirmed) {
       try {
         const response = await fetch(
@@ -62,9 +61,9 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
             },
           }
         );
-  
         if (response.ok) {
-          onDeregister();
+          setUser(null);
+          console.log("User deregistered successfully");
         } else {
           console.error("Failed to deregister user");
         }
@@ -73,6 +72,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
       }
     }
   };
+  
   
   const handleRemoveFavorite = async (movieId) => {
     try {
