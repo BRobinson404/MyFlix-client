@@ -281,6 +281,7 @@ export const MainView = () => {
 <Route
           path="/movies"
           element={
+            user ? (
               <Container>
                 <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
                   {loading ? (
@@ -300,8 +301,11 @@ export const MainView = () => {
                   )}
                 </Row>
               </Container>
-          }
-        />
+              ) : (
+              <Navigate to="/login" />
+              )
+            }
+            />
 
             <Route
               path="/"
