@@ -146,6 +146,7 @@ export const MainView = () => {
           setUser(null);
           setToken(null);
           localStorage.clear();
+          window.location.href = '/signup';
         } else {
           console.error("Failed to deregister user");
         }
