@@ -4,15 +4,12 @@ import { Link } from 'react-router-dom';
 import { Button, Form, ListGroup, Row, Col } from 'react-bootstrap';
 import './profile-view.scss'; // Import the SCSS file
 
-export const ProfileView = ({ user, movies, onUpdateUser }) => {
+export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const [storedUser, setStoredUser] = useState(storedUser ? storedUser : null);
-  const [storedToken, setStoredToken] = useState(storedToken ? storedToken : null);
-
 
   useEffect(() => {
     setUsername(user.Username);
@@ -67,10 +64,7 @@ export const ProfileView = ({ user, movies, onUpdateUser }) => {
           );
           if (response.ok) {
             console.log("User deregistered successfully");
-            setStoredUser(null);
-            setStoredToken(null);
-            localStorage.clear();
-            window.location.href = '/login';
+            window.location.href = '/login'
           } else {
             const errorMessage = await response.text();
             console.error(`Failed to deregister user: ${errorMessage}`);
@@ -83,7 +77,6 @@ export const ProfileView = ({ user, movies, onUpdateUser }) => {
       console.log("User cancellation confirmed.");
     }
   };
-  
   
   
   
