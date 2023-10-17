@@ -20,14 +20,15 @@ $accent-color: white;
 // Card styles
 .card-title.my-auto {
   color: $accent-color;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: $primary-color;
   border: none;
-  font-size: xx-large;
+  font-size: large;
   justify-items: center;
 
   // Adjust movie title for smaller screens
   @media screen and (max-width: 768px) {
-    font-size: x-large; /* Adjust the font size as needed */
+    font-size: xx-large; /* Adjust the font size as needed */
   }
 }
 
@@ -57,7 +58,7 @@ $accent-color: white;
       color: $accent-color;
       text-decoration: none;
       transition: transform 0.3s ease-in-out;
-      font-size: large;
+      font-size: xx-large;
 
       &:hover {
         transform: scale(1.05);
