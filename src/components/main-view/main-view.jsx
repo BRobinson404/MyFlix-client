@@ -343,7 +343,7 @@ export const MainView = () => {
               user={user}
               movies={movies}
               onUpdateUser={handleUpdateUser}
-              onDeregister={handleDeregister}
+              
               onAddFavorite={handleAddFavorite}
               onRemoveFavorite={handleRemoveFavorite}
             />
