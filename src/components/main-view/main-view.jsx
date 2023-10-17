@@ -315,7 +315,7 @@ export const MainView = () => {
             ) : !filteredMovies || filteredMovies.length === 0 ? (
               <p>No movies found</p>
             ) : (
-              <Row xs={1}className="g-4">
+              <Row xs={1} lg={3} className="g-4">
                 {filteredMovies.map((movie) => (
                   <Col key={movie.id} style={{ marginBottom: "20px" }}>
                     <Link to={`/movies/${movie.id}`} className="movie-link">
