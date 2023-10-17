@@ -77,63 +77,85 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
   const trashCanIconUrl = 'https://www.svgrepo.com/show/10777/trash-can-with-cover.svg';
 
   return (
-    <div className="profile-container">
+    <Container className="profile-container">
       <h1>Profile</h1>
-
-      <Form className="profile-form">
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username</Form.Label>
-          <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />
-        </Form.Group>
-
-        <Form.Group controlId="formPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
-        </Form.Group>
-
-        <Form.Group controlId="formEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)} />
-        </Form.Group>
-
-        <Form.Group controlId="formDateOfBirth">
-          <Form.Label>Date of Birth</Form.Label>
-          <Form.Control type="date" value={birthday ? birthday.split("T")[0] : ''} onChange={e => setBirthday(e.target.value)} />
-        </Form.Group>
-      </Form>
-
-      <h2>Favorite Movies</h2>
-      {filteredMovies && filteredMovies.length === 0 ? (
-        <p>No favorite movies found.</p>
-      ) : (
-        <ListGroup className="favorite-list">
-          {filteredMovies.map((movie) => (
-            <ListGroup.Item key={movie.id}>
-              <img
-              src={trashCanIconUrl}
-              alt="Remove"
-              className="trash-can-icon"
-              onClick={() => handleRemoveFavorite(movie.id)}
-            />
-              <Link to={`/movies/${movie.id}`}>{movie.Title}</Link>
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
-      )}
-
-      <Row className="button-row">
-        <Col xl={6} className="update-btn-col">
-          <Button variant="primary" onClick={handleUpdateUser}>
-            Save Changes
-          </Button>
+  
+      <Row className="justify-content-center">
+        <Col xs={10} sm={8} md={6}>
+          <Form className="profile-form p-4 shadow">
+            <Form.Group controlId="formUsername">
+              <Form.Label>Username:</Form.Label>
+              <Form.Control
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </Form.Group>
+  
+            <Form.Group controlId="formPassword">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Group>
+  
+            <Form.Group controlId="formEmail">
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
+  
+            <Form.Group controlId="formDateOfBirth">
+              <Form.Label>Date of Birth:</Form.Label>
+              <Form.Control
+                type="date"
+                value={birthday ? birthday.split("T")[0] : ""}
+                onChange={(e) => setBirthday(e.target.value)}
+              />
+            </Form.Group>
+  
+            <Row className="button-row">
+              <Col className="update-btn-col">
+                <Button variant="primary" onClick={handleUpdateUser}>
+                  Save Changes
+                </Button>
+              </Col>
+  
+              <Col className="deregister-btn-col">
+                <Button variant="danger" onClick={onDeregister}>
+                  Delete Account
+                </Button>
+              </Col>
+            </Row>
+          </Form>
         </Col>
-
-        <Col xl={6} className="deregister-btn-col">
-          <Button variant="danger" onClick={onDeregister}>
-            Delete Account
-          </Button>
+  
+        <Col xs={10} sm={8} md={6}>
+          <h2>Favorite Movies</h2>
+          {filteredMovies && filteredMovies.length === 0 ? (
+            <p>No favorite movies found.</p>
+          ) : (
+            <ListGroup className="favorite-list">
+              {filteredMovies.map((movie) => (
+                <ListGroup.Item key={movie.id}>
+                  <img
+                    src={trashCanIconUrl}
+                    alt="Remove"
+                    className="trash-can-icon"
+                    onClick={() => handleRemoveFavorite(movie.id)}
+                  />
+                  <Link to={`/movies/${movie.id}`}>{movie.Title}</Link>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          )}
         </Col>
       </Row>
-    </div>
+    </Container>
   );
-};
+}  
