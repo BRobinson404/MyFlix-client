@@ -10,8 +10,9 @@ export const ProfileView = ({ user, movies, onUpdateUser }) => {
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [ token, setToken] = useState(storedToken ? storedToken : null);
+  const [storedUser, setStoredUser] = useState(storedUser ? storedUser : null);
+  const [storedToken, setStoredToken] = useState(storedToken ? storedToken : null);
+
 
   useEffect(() => {
     setUsername(user.Username);
@@ -66,8 +67,8 @@ export const ProfileView = ({ user, movies, onUpdateUser }) => {
           );
           if (response.ok) {
             console.log("User deregistered successfully");
-            setUser(null);
-            setToken(null);
+            setStoredUser(null);
+            setStoredToken(null);
             localStorage.clear();
             window.location.href = '/login';
           } else {
