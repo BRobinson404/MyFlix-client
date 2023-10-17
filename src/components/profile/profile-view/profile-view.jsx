@@ -1,7 +1,7 @@
 // ProfileView.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Form, ListGroup, Row, Col } from 'react-bootstrap';
+import { Button, Form, ListGroup, Row, Col, Container } from 'react-bootstrap';
 import './profile-view.scss'; // Import the SCSS file
 
 export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
