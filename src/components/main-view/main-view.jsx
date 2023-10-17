@@ -166,137 +166,196 @@ export const MainView = () => {
     }
   }, [movies, selectedGenre]);
 
+  if (!user) {
     return (
       <BrowserRouter>
-        <div>
-          <Navbar bg="light" expand="lg">
-            <Navbar.Brand as={Link} to="/">
-              MyFlix
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                {user ? (
-                  <>
-                    <Nav.Link as={Link} to={`/users/${user.Username}`}>
-                      Profile
-                    </Nav.Link>
-                    <Nav.Link onClick={() => {
-                      setUser(null);
-                      setToken(null);
-                      localStorage.clear();
-                    }}>Logout</Nav.Link>
-                  </>
-                ) : (
-                  <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                )}
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
-  
-          <Routes>
-            <Route
-              path="/movies/:id"
-              element={
-                <>
-                  {storedUser && movies.length === 0 ? (
-                    <Col>The list is empty!</Col>
-                  ) : storedUser ? (
-                    <Col>
-                      <MovieView
-                        movies={movies}
-                        user={user}
-                        storedUser={storedUser}
-                        storedToken={storedToken}
-                        onAddFavorite={handleAddFavorite}
-                      />
-                    </Col>
-                  ) : (
-                    <Navigate to="/login" />
-                  )}
-                </>
-              }
-            />
-  
-            <Route
-              path="/movies"
-              element={
-                <Container>
-                  <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
-                    {loading ? (
-                      <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                      </Spinner>
-                    ) : !filteredMovies || !filteredMovies.length ? (
-                      <p>No movies found</p>
-                    ) : (
-                      filteredMovies.map((movie) => (
-                        <Col key={movie.id}>
-                          <Link to={`/movies/${movie.id}`} className="movie-link">
-                            <MovieCard movie={movie} />
-                          </Link>
-                        </Col>
-                      ))
-                    )}
-                  </Row>
-                </Container>
-              }
-            />
-  
-            <Route
-              path="/"
-              element={
-                <Container>
-                  <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
-                    {loading ? (
-                      <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                      </Spinner>
-                    ) : !filteredMovies || !filteredMovies.length ? (
-                      <p>No movies found</p>
-                    ) : (
-                      filteredMovies.map((movie) => (
-                        <Col key={movie.id} className="my-3">
-                          <Link to={`/movies/${movie.id}`} className="movie-link">
-                            <MovieCard movie={movie} />
-                          </Link>
-                        </Col>
-                      ))
-                    )}
-                  </Row>
-                </Container>
-              }
-            />
-  
-            <Route
-              path="/users/:username"
-              element={
-                <ProfileView
-                  user={user}
-                  movies={movies}
-                  onUpdateUser={handleUpdateUser}
-                  onDeregister={handleDeregister}
-                  onAddFavorite={handleAddFavorite}
-                  onRemoveFavorite={handleRemoveFavorite}
+        <NavigationBar
+          user={user}
+          onLoggedOut={() => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          }}
+          onGenreFilter={handleGenreFilter} // Pass the handleGenreFilter function as a prop
+        />
+        <Container>
+          <Row>
+            <Col>
+              <Routes>
+                <Route
+                  path="/login"
+                  element={
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
+                  }
                 />
-              }
-            />
-  
-            <Route
-              path="/login"
-              element={
-                <LoginView
-                  onLoggedIn={(user, token) => {
-                    setUser(user);
-                    setToken(token);
-                  }}
-                />
-              }
-            />
-  
-            <Route path="/signup" element={<SignupView />} />
-          </Routes>
-        </div>
+                <Route path="/signup" element={<SignupView />} />
+              </Routes>
+            </Col>
+          </Row>
+        </Container>
       </BrowserRouter>
     );
-  };
+  }
+
+  if (movies.length === 0) {
+    return (
+      <BrowserRouter>
+        <NavigationBar
+          user={user}
+          onLoggedOut={() => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          }}
+          onGenreFilter={handleGenreFilter} // Pass the handleGenreFilter function as a prop
+        />
+        <Container>
+          <Row>
+            <Col>
+              <Button
+                onClick={() => {
+                  setUser(null);
+                  setToken(null);
+                  localStorage.clear();
+                }}
+              >
+                Logout
+              </Button>
+            </Col>
+            <Col>
+              <div>No movies found</div>
+            </Col>
+          </Row>
+        </Container>
+      </BrowserRouter>
+    );
+  }
+
+  return (
+    <BrowserRouter>
+      <NavigationBar
+        user={user}
+        onLoggedOut={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }}
+        onGenreFilter={handleGenreFilter} // Pass the handleGenreFilter function as a prop
+      >
+        {user && (
+          <Link to={`/users/${user.Username}`} className="profile-link">
+            Profile
+          </Link>
+        )}
+      </NavigationBar>
+
+      <Routes>
+        <Route
+          path="/movies/:id"
+          element={
+            <>  
+              {storedUser && movies.length === 0 ? (
+                <Col>The list is empty!</Col>
+              ) : storedUser ? (
+                <Col>
+                  <MovieView
+                    movies={movies}
+                    user={user}
+                    storedUser={storedUser}
+                    storedToken={storedToken}
+                    onAddFavorite={handleAddFavorite}
+                  />
+                </Col>
+              ) : (
+                <Navigate to="/login" />
+              )}
+            </>
+          }
+        />
+
+<Route
+          path="/movies"
+          element={
+              <Container>
+                <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
+                  {loading ? (
+                    <Spinner animation="border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  ) : !filteredMovies || !filteredMovies.length ? (
+                    <p>No movies found</p>
+                  ) : (
+                    filteredMovies.map((movie) => (
+                      <Col key={movie.id}>
+                        <Link to={`/movies/${movie.id}`} className="movie-link">
+                          <MovieCard movie={movie} />
+                        </Link>
+                      </Col>
+                    ))
+                  )}
+                </Row>
+              </Container>
+          }
+        />
+
+        <Route
+          path="/"
+          element={
+              <Container>
+                <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
+                  {loading ? (
+                    <Spinner animation="border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  ) : !filteredMovies || !filteredMovies.length ? (
+                    <p>No movies found</p>
+                  ) : (
+                    filteredMovies.map((movie) => (
+                      <Col key={movie.id} className="my-3">
+                        <Link to={`/movies/${movie.id}`} className="movie-link">
+                          <MovieCard movie={movie} />
+                        </Link>
+                      </Col>
+                    ))
+                  )}
+                </Row>
+              </Container>
+          }
+        />
+
+        <Route
+          path="/users/:username"
+          element={
+            <ProfileView
+              user={user}
+              movies={movies}
+              onUpdateUser={handleUpdateUser}
+              onDeregister={handleDeregister}
+              onAddFavorite={handleAddFavorite}
+              onRemoveFavorite={handleRemoveFavorite}
+            />
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+            <LoginView
+              onLoggedIn={(user, token) => {
+                setUser(user);
+                setToken(token);
+              }}
+            />
+          }
+        />
+
+        <Route path="/signup" element={<SignupView />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
