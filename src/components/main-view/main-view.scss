@@ -10,20 +10,13 @@ $accent-color: white;
 .navigation-bar {
   background-color: $primary-color;
   
-  // Customize the navigation bar for smaller screens
-  @media screen and (max-width: 768px) {
-    font-size: 1.5rem; // Adjust the font size as needed
-    padding-top: 20px; // Adjust the top padding as needed
-    padding-bottom: 20px; // Adjust the bottom padding as needed
-  }
-
-  // Customize the links inside the navigation bar for smaller screens
-  .navbar-link {
+  a {
     @media screen and (max-width: 768px) {
-      font-size: 1.2rem; // Adjust the font size as needed
+      font-size: 2.0rem; // Adjust the font size as needed
     }
   }
 }
+
 // Card styles
 .card-title.my-auto {
   color: $accent-color;
