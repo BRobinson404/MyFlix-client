@@ -82,7 +82,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
   
       <Row className="justify-content-center">
         <Col xs={10} sm={8} md={6}>
-          <Form className="profile-form p-4 shadow">
+          <Form>
             <Form.Group controlId="formUsername">
               <Form.Label>Username:</Form.Label>
               <Form.Control
