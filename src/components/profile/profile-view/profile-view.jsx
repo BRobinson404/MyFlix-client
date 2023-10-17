@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { Button, Form, ListGroup, Row, Col } from 'react-bootstrap';
 import './profile-view.scss'; // Import the SCSS file
 
-export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
+export const ProfileView = ({ user, movies, onUpdateUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);
+  const [ token, setToken] = useState(storedToken ? storedToken : null);
 
   useEffect(() => {
     setUsername(user.Username);
