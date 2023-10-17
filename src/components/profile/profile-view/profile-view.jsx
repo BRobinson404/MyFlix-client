@@ -78,9 +78,9 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
 
   return (
     <Container className="profile-container">
-      <h1>Profile</h1>
   
       <Row className="justify-content-around">
+      <h1>Profile</h1>
       <Col xs={5} md={5} lg={5} className="mx-2">
           <Form>
             <Form.Group controlId="formUsername" className="mb-3">
