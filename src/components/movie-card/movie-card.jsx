@@ -7,11 +7,11 @@ export const MovieCard = ({ movie }) => {
   return (
     <Col className="mb-4">
     <Card className="movie-card border-0">
-      <Card.Body className="align-items-center">
+    <Card.Body className="d-flex flex-column align-items-center justify-content-center">
         <Link to={`/movies/${movie.id}`} className="movie-link">
           <Card.Img variant="top" src={movie.ImagePath} />
         </Link>
-        <div className="card-title my-auto">{movie.Title}</div>
+        <div className="card-title my-auto text-center">{movie.Title}</div>
       </Card.Body>
     </Card>
     </Col>
