@@ -69,7 +69,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister, setUser,
           setUser(null);
           setToken(null);
           localStorage.clear();
-          history.push('/login');
+          window.location.href = '/login';
         } else {
           console.error("Failed to deregister user");
         }
