@@ -25,7 +25,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
         <Nav className="me-auto">
           {!user && (
             <>
-              <Nav.Link as={Link} to="/" className="navbar-link">
+              <Nav.Link as={Link} to="/login" className="navbar-link">
                 Home
               </Nav.Link>
               <Nav.Link as={Link} to="/login">
