@@ -7,15 +7,23 @@ $accent-color: white;
   color: $accent-color;
 }
 
-.navigation-bar {
-  background-color: $primary-color;
-  
-  a {
-    @media screen and (max-width: 768px) {
-      font-size: 2.0rem; // Adjust the font size as needed
+#custom-navigation-bar {
+  @media screen and (max-width: 576px) { // xs screen size
+    font-size: 2.0rem; // Adjust the navigation bar size for smaller screens
+    #custom-navbar-brand {
+      font-size: 2.0rem; // Adjust the font size of the navbar brand for smaller screens
+    }
+
+    .navbar-link {
+      font-size: 2.0rem; // Adjust the font size of the links in the navbar for smaller screens
+    }
+
+    .dropdown-item {
+      font-size: 2.0rem; // Adjust the font size of the dropdown items for smaller screens
     }
   }
 }
+
 
 // Card styles
 .card-title.my-auto {
