@@ -17,69 +17,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
     setEmail(user.Email);
     setBirthday(user.Birthday);
     setFavoriteMovies(user.FavoriteMovies);
-  }, [user]);
-
-  const handleUpdateUser = async () => {
-    const updatedUser = {
-      ...user,
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday.split("T")[0],
-    };
-
-    try {
-      const response = await fetch(
-        `https://myflix404.herokuapp.com/users/${user.Username}`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedUser),
-        }
-      );
-      const data = await response.json();
-
-      onUpdateUser(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleDeregister = async () => {
-    const confirmed = window.confirm("Are you sure you want to deregister?");
-    if (confirmed) {
-      setTimeout(async () => {
-        try {
-          const response = await fetch(
-            `https://myflix404.herokuapp.com/users/${user.Username}`,
-            {
-              method: "DELETE",
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
-            }
-          );
-          if (response.ok) {
-            console.log("User deregistered successfully");
-            window.location.href = '/login'
-          } else {
-            const errorMessage = await response.text();
-            console.error(`Failed to deregister user: ${errorMessage}`);
-          }
-        } catch (error) {
-          console.error("An error occurred during deregistration:", error);
-        }
-      }, 0);
-    } else {
-      console.log("User cancellation confirmed.");
-    }
-  };
-  
-  
-  
+  }, [user]); 
   
   const handleRemoveFavorite = async (movieId) => {
     try {
@@ -155,13 +93,13 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
 
       <Row className="button-row">
         <Col xl={6} className="update-btn-col">
-          <Button variant="primary" onClick={handleUpdateUser}>
+          <Button variant="primary" onClick={onUpdateUser}>
             Save Changes
           </Button>
         </Col>
 
         <Col xl={6} className="deregister-btn-col">
-          <Button variant="danger" onClick={handleDeregister}>
+          <Button variant="danger" onClick={onDeregister}>
             Delete Account
           </Button>
         </Col>
