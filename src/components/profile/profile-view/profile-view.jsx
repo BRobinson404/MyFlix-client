@@ -10,6 +10,8 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
 
   useEffect(() => {
     setUsername(user.Username);
