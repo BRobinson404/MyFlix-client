@@ -1,21 +1,15 @@
 $primary-color: #202020;
 $accent-color: white;
 
-#custom-navigation-bar.navbar.navbar-expand-xl.navbar-dark {
-    @media only screen and (max-width: 576px) {
-        font-size: 2.5rem !important;
-  
-        #custom-navbar-brand.navbar-brand {
-            font-size: 2.5rem !important;
-        }
-  
-        .navbar-link.nav-link,
-        #custom-nav-link-home.navbar-link.nav-link,
-        #custom-nav-link-profile.nav-link,
-        #custom-nav-link-logout.nav-link {
-            font-size: 2.5rem !important;
-        }
-    }
-}
+@media only screen and (max-width: 576px) {
+  #custom-navigation-bar.navbar.navbar-dark .navbar-toggler {
+    font-size: 2.5rem;
+  }
 
-    
+  #custom-navigation-bar.navbar.navbar-dark .navbar-collapse {
+    .navbar-link.nav-link {
+      font-size: 2.5rem;
+    }
+  }
+}
+   
