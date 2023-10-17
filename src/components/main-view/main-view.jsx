@@ -285,7 +285,7 @@ export const MainView = () => {
           element={
             <>
               <Container>
-  <Row className="justify-content-center">
+    <Row className="d-flex flex-column align-items-center">
     {loading ? (
       <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
@@ -313,7 +313,7 @@ export const MainView = () => {
           element={
             <>
               <Container>
-  <Row className="justify-content-center">
+    <Row className="d-flex flex-column align-items-center">
     {loading ? (
       <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
