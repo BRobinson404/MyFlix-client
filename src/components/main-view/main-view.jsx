@@ -281,61 +281,53 @@ export const MainView = () => {
           }
         />
         <Route
-          path="/movies"
-          element={
-            <>
-              <Container>
-    <Row className="align-items-center">
-    {loading ? (
-      <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    ) : !filteredMovies || !filteredMovies.length ? (
-      <p>No movies found</p>
-    ) : (
-      filteredMovies.map((movie) => (
-        <Col key={movie.id}>
-          <div>
-            <Link to={`/movies/${movie.id}`} className="movie-link">
-              <MovieCard movie={movie} />
-            </Link>
-          </div>
-        </Col>
-      ))
-    )}
-  </Row>
-</Container>
-            </>
-          }
-        />
+        path="/movies"
+        element={
+          <Container>
+            {loading ? (
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            ) : !filteredMovies || !filteredMovies.length ? (
+              <p>No movies found</p>
+            ) : (
+              <Row xs={1} sm={2} md={3} lg={4} className="g-4">
+                {filteredMovies.map((movie) => (
+                  <div key={movie.id}>
+                    <Link to={`/movies/${movie.id}`} className="movie-link">
+                      <MovieCard movie={movie} />
+                    </Link>
+                  </div>
+                ))}
+              </Row>
+            )}
+          </Container>
+        }
+      />
         <Route
-          path="/"
-          element={
-            <>
-              <Container>
-    <Row className="align-items-center">
-    {loading ? (
-      <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    ) : !filteredMovies || !filteredMovies.length ? (
-      <p>No movies found</p>
-    ) : (
-      filteredMovies.map((movie) => (
-        <Col key={movie.id}>
-          <div>
-            <Link to={`/movies/${movie.id}`} className="movie-link">
-              <MovieCard movie={movie} />
-            </Link>
-          </div>
-        </Col>
-      ))
-    )}
-  </Row>
-</Container>
-            </>
-          }
-        />
+        path="/"
+        element={
+          <Container>
+            {loading ? (
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            ) : !filteredMovies || !filteredMovies.length ? (
+              <p>No movies found</p>
+            ) : (
+              <Row xs={1} sm={2} md={3} lg={4} className="g-4">
+                {filteredMovies.map((movie) => (
+                  <div key={movie.id}>
+                    <Link to={`/movies/${movie.id}`} className="movie-link">
+                      <MovieCard movie={movie} />
+                    </Link>
+                  </div>
+                ))}
+              </Row>
+            )}
+          </Container>
+        }
+      />
         <Route
           path="/users/:username"
           element={
