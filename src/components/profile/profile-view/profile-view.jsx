@@ -126,11 +126,11 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
                 </Button>
               </Col>
   
-              <Col className="deregister-btn-col d-flex justify-content-end">
-                <Button variant="danger" onClick={onDeregister}>
-                  Delete Account
-                </Button>
-              </Col>
+              <Col className="deregister-btn-col text-end">
+  <Button variant="danger" onClick={onDeregister}>
+    Delete Account
+  </Button>
+</Col>
             </Row>
           </Form>
         </Col>
