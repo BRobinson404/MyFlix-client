@@ -83,7 +83,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
       <Row className="justify-content-left">
       <Col xs={8}>
           <Form>
-            <Form.Group controlId="formUsername">
+            <Form.Group controlId="formUsername" className="mb-3">
               <Form.Label>Username:</Form.Label>
               <Form.Control
                 type="text"
@@ -92,7 +92,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
               />
             </Form.Group>
   
-            <Form.Group controlId="formPassword">
+            <Form.Group controlId="formPassword" className="mb-3">
               <Form.Label>Password:</Form.Label>
               <Form.Control
                 type="password"
@@ -101,7 +101,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
               />
             </Form.Group>
   
-            <Form.Group controlId="formEmail">
+            <Form.Group controlId="formEmail" className="mb-3">
               <Form.Label>Email:</Form.Label>
               <Form.Control
                 type="email"
@@ -110,7 +110,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
               />
             </Form.Group>
   
-            <Form.Group controlId="formDateOfBirth">
+            <Form.Group controlId="formDateOfBirth" className="mb-3">
               <Form.Label>Date of Birth:</Form.Label>
               <Form.Control
                 type="date"
@@ -119,7 +119,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
               />
             </Form.Group>
   
-            <Row className="button-row">
+            <Row className="button-row" >
               <Col className="update-btn-col">
                 <Button variant="primary" onClick={handleUpdateUser}>
                   Save Changes
