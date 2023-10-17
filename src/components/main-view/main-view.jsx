@@ -142,7 +142,7 @@ export const MainView = () => {
         );
   
         if (response.ok) {
-          onDeregister();
+          console.log("User deregistered successfully");
         } else {
           console.error("Failed to deregister user");
         }
