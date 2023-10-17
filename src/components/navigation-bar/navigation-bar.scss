@@ -2,29 +2,47 @@ $primary-color: #202020;
 $accent-color: white;
 
 #custom-navigation-bar {
+  @media (max-width: 576px) {
+    font-size: 1.5rem; /* Adjust the font size for the navigation bar on extra-small screens */
+  }
+
+  #custom-navbar-brand {
     @media (max-width: 576px) {
-      font-size: 1.5rem; /* Adjust the font size for the navigation bar on extra-small screens */
+      font-size: 1.5rem; /* Adjust the font size for the navbar brand on extra-small screens */
     }
-  
-    #custom-navbar-brand {
+  }
+
+  .navbar-link {
+    @media (max-width: 576px) {
+      font-size: 1.5rem; /* Adjust the font size for the links in the navbar on extra-small screens */
+    }
+  }
+
+  #custom-dropdown-menu {
+    .dropdown-item {
       @media (max-width: 576px) {
-        font-size: 1.5rem; /* Adjust the font size for the navbar brand on extra-small screens */
-      }
-    }
-  
-    .navbar-link {
-      @media (max-width: 576px) {
-        font-size: 1.5rem; /* Adjust the font size for the links in the navbar on extra-small screens */
-      }
-    }
-  
-    #custom-dropdown-menu {
-      .dropdown-item {
-        @media (max-width: 576px) {
-          font-size: 1.5rem; /* Adjust the font size for the dropdown items on extra-small screens */
-        }
+        font-size: 1.5rem; /* Adjust the font size for the dropdown items on extra-small screens */
       }
     }
   }
+  @media (max-width: 576px) {
+    #custom-navigation-bar.navbar-collapse {
+      font-size: 1.5rem; /* Adjust the font size for the navigation bar on extra-small screens when collapsed */
+    }
   
+    #custom-navigation-bar.navbar-collapse #custom-navbar-brand {
+      font-size: 1.5rem; /* Adjust the font size for the navbar brand on extra-small screens when collapsed */
+    }
+  
+    #custom-navigation-bar.navbar-collapse .navbar-link {
+      font-size: 1.5rem; /* Adjust the font size for the links in the navbar on extra-small screens when collapsed */
+    }
+  
+    #custom-navigation-bar.navbar-collapse #custom-dropdown-menu .dropdown-item {
+      font-size: 1.5rem; /* Adjust the font size for the dropdown items on extra-small screens when collapsed */
+    }
+  }
+  
+}
+
    
