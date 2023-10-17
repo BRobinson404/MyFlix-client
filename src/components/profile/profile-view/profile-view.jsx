@@ -63,7 +63,6 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister }) => {
             }
           );
           if (response.ok) {
-            onDeregister(); // Update the user state to indicate the user has been deleted
             console.log("User deregistered successfully");
           } else {
             const errorMessage = await response.text();
