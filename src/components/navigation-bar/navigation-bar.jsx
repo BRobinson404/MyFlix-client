@@ -16,47 +16,47 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
   };
 
   return (
-    <Navbar className="navigation-bar" variant="dark" expand="xl">
-      <Navbar.Brand as={Link} to="/">
-        MyFlix
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
-          {!user && (
-            <>
-              <Nav.Link as={Link} to="/login" className="navbar-link">
-                Home
-              </Nav.Link>
-              <Nav.Link as={Link} to="/login">
-                Login
-              </Nav.Link>
-              <Nav.Link as={Link} to="/signup">
-                Sign Up
-              </Nav.Link>
-            </>
-          )}
-          {user && (
-            <>
-              <Nav.Link as={Link} to="/" className="navbar-link">
-                Home
-              </Nav.Link>
-              <Nav.Link as={Link} to={`/users/${user.Username}`}>
-                Profile
-              </Nav.Link>
-              <Nav.Link as={Link} to="/login" onClick={handleLogout}>
-                Logout
-              </Nav.Link>
-            </>
-          )}
-        </Nav>
-        {user && (
-          <Nav>
-            <Dropdown show={showGenreFilter} onToggle={(isOpen) => setShowGenreFilter(isOpen)}>
-              <Dropdown.Toggle as={Button} variant="secondary" id="dropdown-genre">
-                Filter Genres
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
+    <Navbar id="custom-navigation-bar" className="navigation-bar" variant="dark" expand="xl">
+  <Navbar.Brand as={Link} to="/" id="custom-navbar-brand">
+    MyFlix
+  </Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="me-auto">
+      {!user && (
+        <>
+          <Nav.Link as={Link} to="/login" className="navbar-link" id="custom-nav-link-home">
+            Home
+          </Nav.Link>
+          <Nav.Link as={Link} to="/login" id="custom-nav-link-login">
+            Login
+          </Nav.Link>
+          <Nav.Link as={Link} to="/signup" id="custom-nav-link-signup">
+            Sign Up
+          </Nav.Link>
+        </>
+      )}
+      {user && (
+        <>
+          <Nav.Link as={Link} to="/" className="navbar-link" id="custom-nav-link-home">
+            Home
+          </Nav.Link>
+          <Nav.Link as={Link} to={`/users/${user.Username}`} id="custom-nav-link-profile">
+            Profile
+          </Nav.Link>
+          <Nav.Link as={Link} to="/login" onClick={handleLogout} id="custom-nav-link-logout">
+            Logout
+          </Nav.Link>
+        </>
+      )}
+    </Nav>
+    {user && (
+      <Nav id="custom-dropdown-menu">
+        <Dropdown show={showGenreFilter} onToggle={(isOpen) => setShowGenreFilter(isOpen)}>
+          <Dropdown.Toggle as={Button} variant="secondary" id="dropdown-genre">
+            Filter Genres
+          </Dropdown.Toggle>
+          <Dropdown.Menu id="custom-dropdown-menu-items">
                 <Dropdown.Item onClick={() => handleGenreFilter('')}>All Genres</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleGenreFilter('Crime')}>Crime</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleGenreFilter('Science Fiction')}>Science Fiction</Dropdown.Item>
@@ -67,11 +67,12 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
                 <Dropdown.Item onClick={() => handleGenreFilter('Horror')}>Horror</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleGenreFilter('Thriller')}>Thriller</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleGenreFilter('Romance')}>Romance</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Nav>
-        )}
-      </Navbar.Collapse>
-    </Navbar>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Nav>
+    )}
+  </Navbar.Collapse>
+</Navbar>
+
   );
 };
