@@ -9,6 +9,12 @@ $accent-color: white;
 
 .navigation-bar {
   background-color: $primary-color;
+
+  // Adjust navigation bar for smaller screens
+  @media screen and (max-width: 768px) {
+    height: 80px; /* Adjust the height as needed */
+    font-size: 1.5rem; /* Adjust the font size as needed */
+  }
 }
 
 // Card styles
@@ -19,6 +25,11 @@ $accent-color: white;
   border: none;
   font-size: x-large;
   justify-items: center;
+
+  // Adjust movie title for smaller screens
+  @media screen and (max-width: 768px) {
+    font-size: 1.2rem; /* Adjust the font size as needed */
+  }
 }
 
 // Form styles
@@ -71,18 +82,4 @@ $accent-color: white;
 // Button styles
 .favorite-button.btn.btn-primary {
   color: $accent-color;
-}
-
-// Adjust navigation bar for smaller screens
-@media screen and (max-width: 768px) {
-  .navigation-bar {
-    height: 80px; /* Adjust the height as needed */
-  }
-}
-
-// Adjust movie title for smaller screens
-@media screen and (max-width: 768px) {
-  .card-title.my-auto {
-    font-size: 1.2rem; /* Adjust the font size as needed */
-  }
 }
