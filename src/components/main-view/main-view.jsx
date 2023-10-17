@@ -285,26 +285,26 @@ export const MainView = () => {
           element={
             <>
               <Container>
-                <Row className="justify-content-center">
-                  {loading ? (
-                    <Spinner animation="border" role="status">
-                      <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                  ) : !filteredMovies || !filteredMovies.length ? (
-                    <p>No movies found</p>
-                  ) : (
-                    filteredMovies.map((movie) => (
-                      <Col className="mb-4" key={movie.id} md={4}>
-                        <div>
-                          <Link to={`/movies/${movie.id}`} className="movie-link">
-                            <MovieCard movie={movie} />
-                          </Link>
-                        </div>
-                      </Col>
-                    ))
-                  )}
-                </Row>
-              </Container>
+  <Row className="justify-content-center">
+    {loading ? (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    ) : !filteredMovies || !filteredMovies.length ? (
+      <p>No movies found</p>
+    ) : (
+      filteredMovies.map((movie) => (
+        <Col className="mb-4" xs={12} sm={6} key={movie.id}>
+          <div>
+            <Link to={`/movies/${movie.id}`} className="movie-link">
+              <MovieCard movie={movie} />
+            </Link>
+          </div>
+        </Col>
+      ))
+    )}
+  </Row>
+</Container>
             </>
           }
         />
@@ -313,26 +313,26 @@ export const MainView = () => {
           element={
             <>
               <Container>
-                <Row className="justify-content-center">
-                  {loading ? (
-                    <Spinner animation="border" role="status">
-                      <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                  ) : !filteredMovies || !filteredMovies.length ? (
-                    <p>No movies found</p>
-                  ) : (
-                    filteredMovies.map((movie) => (
-                      <Col className="mb-4" key={movie.id} md={4}>
-                        <div>
-                          <Link to={`/movies/${movie.id}`} className="movie-link">
-                            <MovieCard movie={movie} />
-                          </Link>
-                        </div>
-                      </Col>
-                    ))
-                  )}
-                </Row>
-              </Container>
+  <Row className="justify-content-center">
+    {loading ? (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    ) : !filteredMovies || !filteredMovies.length ? (
+      <p>No movies found</p>
+    ) : (
+      filteredMovies.map((movie) => (
+        <Col className="mb-4" xs={12} sm={6} key={movie.id}>
+          <div>
+            <Link to={`/movies/${movie.id}`} className="movie-link">
+              <MovieCard movie={movie} />
+            </Link>
+          </div>
+        </Col>
+      ))
+    )}
+  </Row>
+</Container>
             </>
           }
         />
