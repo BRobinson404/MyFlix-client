@@ -294,7 +294,7 @@ export const MainView = () => {
                     <p>No movies found</p>
                   ) : (
                     filteredMovies.map((movie) => (
-                      <Col className="mb-4" key={movie.id}>
+                      <Col className="mb-4" key={movie.id} md={4}>
                         <div>
                           <Link to={`/movies/${movie.id}`} className="movie-link">
                             <MovieCard movie={movie} />
@@ -322,7 +322,7 @@ export const MainView = () => {
                     <p>No movies found</p>
                   ) : (
                     filteredMovies.map((movie) => (
-                      <Col className="mb-4" key={movie.id}>
+                      <Col className="mb-4" key={movie.id} md={4}>
                         <div>
                           <Link to={`/movies/${movie.id}`} className="movie-link">
                             <MovieCard movie={movie} />
