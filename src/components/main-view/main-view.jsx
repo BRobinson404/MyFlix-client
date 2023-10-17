@@ -143,6 +143,9 @@ export const MainView = () => {
   
         if (response.ok) {
           console.log("User deregistered successfully");
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
         } else {
           console.error("Failed to deregister user");
         }
@@ -150,7 +153,7 @@ export const MainView = () => {
         console.error(error);
       }
     }
-  };  
+  };
 
   const handleGenreFilter = (selectedGenre) => {
     setSelectedGenre(selectedGenre);
@@ -343,7 +346,7 @@ export const MainView = () => {
               user={user}
               movies={movies}
               onUpdateUser={handleUpdateUser}
-              
+              onDeregister={handleDeregister}
               onAddFavorite={handleAddFavorite}
               onRemoveFavorite={handleRemoveFavorite}
             />
