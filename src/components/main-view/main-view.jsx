@@ -166,6 +166,77 @@ export const MainView = () => {
     }
   }, [movies, selectedGenre]);
 
+  if (!user) {
+    return (
+      <BrowserRouter>
+        <NavigationBar
+          user={user}
+          onLoggedOut={() => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          }}
+          onGenreFilter={handleGenreFilter} // Pass the handleGenreFilter function as a prop
+        />
+        <Container>
+          <Row>
+            <Col>
+              <Routes>
+                <Route
+                  path="/login"
+                  element={
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
+                  }
+                />
+                <Route path="/signup" element={<SignupView />} />
+                <Navigate to="/login" />
+              </Routes>
+            </Col>
+          </Row>
+        </Container>
+      </BrowserRouter>
+    );
+  }
+
+  if (movies.length === 0) {
+    return (
+      <BrowserRouter>
+        <NavigationBar
+          user={user}
+          onLoggedOut={() => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          }}
+          onGenreFilter={handleGenreFilter} // Pass the handleGenreFilter function as a prop
+        />
+        <Container>
+          <Row>
+            <Col>
+              <Button
+                onClick={() => {
+                  setUser(null);
+                  setToken(null);
+                  localStorage.clear();
+                }}
+              >
+                Logout
+              </Button>
+            </Col>
+            <Col>
+              <div>No movies found</div>
+            </Col>
+          </Row>
+        </Container>
+      </BrowserRouter>
+    );
+  }
+
   return (
     <BrowserRouter>
       <NavigationBar
@@ -175,7 +246,7 @@ export const MainView = () => {
           setToken(null);
           localStorage.clear();
         }}
-        onGenreFilter={handleGenreFilter}
+        onGenreFilter={handleGenreFilter} // Pass the handleGenreFilter function as a prop
       >
         {user && (
           <Link to={`/users/${user.Username}`} className="profile-link">
@@ -208,7 +279,7 @@ export const MainView = () => {
           }
         />
 
-        <Route
+<Route
           path="/movies"
           element={
             user ? (
@@ -231,11 +302,39 @@ export const MainView = () => {
                   )}
                 </Row>
               </Container>
-            ) : (
+              ) : (
               <Navigate to="/login" />
-            )
-          }
-        />
+              )
+            }/>
+
+            <Route
+              path="/"
+              element={
+                user ? (
+                  <Container>
+                    <Row xs={1} sm={2} md={3} lg={3} className="justify-content-center g-4">
+                      {loading ? (
+                        <Spinner animation="border" role="status">
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      ) : !filteredMovies || !filteredMovies.length ? (
+                        <p>No movies found</p>
+                      ) : (
+                        filteredMovies.map((movie) => (
+                          <Col key={movie.id} className="my-3">
+                            <Link to={`/movies/${movie.id}`} className="movie-link">
+                              <MovieCard movie={movie} />
+                            </Link>
+                          </Col>
+                        ))
+                      )}
+                    </Row>
+                  </Container>
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
 
         <Route
           path="/users/:username"
