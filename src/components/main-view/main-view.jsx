@@ -194,7 +194,6 @@ export const MainView = () => {
                   }
                 />
                 <Route path="/signup" element={<SignupView />} />
-                <Navigate to="/login" />
               </Routes>
             </Col>
           </Row>
