@@ -322,7 +322,7 @@ export const MainView = () => {
       <p>No movies found</p>
     ) : (
       filteredMovies.map((movie) => (
-        <Col className="mb-4" xs={6} sm={6} md={3} lg={3} xl={3} key={movie.id}>
+        <Col className="mb-4" xs={1} sm={1} md={1} lg={3} xl={3} key={movie.id}>
           <div>
             <Link to={`/movies/${movie.id}`} className="movie-link">
               <MovieCard movie={movie} />
