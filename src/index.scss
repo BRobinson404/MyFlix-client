@@ -3,7 +3,7 @@ $primary-color: #202020;
 $accent-color: white;
 
 @media only screen and (max-width: 576px) {
-  #custom-navigation-bar.navbar.navbar-dark .navbar-collapse.collapse#basic-navbar-nav {
+  #custom-navigation-bar.navbar.navbar-dark .navbar-collapse.collapse.navbar-collapse.collapse.show #basic-navbar-nav {
     font-size: 2.5rem;
 
     .navbar-link.nav-link {
