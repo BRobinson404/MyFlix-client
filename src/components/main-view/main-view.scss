@@ -13,17 +13,16 @@ $accent-color: white;
   // Adjust navigation bar for smaller screens
   @media screen and (max-width: 768px) {
     height: 100px; /* Adjust the height as needed */
-    font-size: x-large; /* Adjust the font size as needed */
+    font-size: xx-large; /* Adjust the font size as needed */
   }
 }
 
 // Card styles
 .card-title.my-auto {
   color: $accent-color;
-  text-decoration: underline;
-  text-decoration-color: $primary-color;
+  text-decoration: none;
   border: none;
-  font-size: x-large;
+  font-size: xx-large;
   justify-items: center;
 
   // Adjust movie title for smaller screens
