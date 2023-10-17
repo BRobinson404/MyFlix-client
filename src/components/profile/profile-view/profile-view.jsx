@@ -79,7 +79,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
   return (
     <Container className="profile-container">
   
-      <Row className="justify-content-around">
+      <Row className="mt-2 justify-content-around">
       <Col xs={5} md={5} lg={5} className="mx-2">
           <Form>
           <h1>Profile</h1>
