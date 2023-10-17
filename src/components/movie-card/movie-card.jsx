@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 export const MovieCard = ({ movie }) => {
   return (
+    <Col xs={12} sm={6} md={4} lg={3} className="mb-4">
     <Card className="movie-card border-0">
       <Card.Body className="d-flex flex-column align-items-center">
         <Link to={`/movies/${movie.id}`} className="movie-link">
@@ -13,6 +14,7 @@ export const MovieCard = ({ movie }) => {
         <div className="card-title my-auto">{movie.Title}</div>
       </Card.Body>
     </Card>
+    </Col>
   );
 };
 
