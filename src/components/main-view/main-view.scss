@@ -14,10 +14,16 @@ $accent-color: white;
   @media screen and (max-width: 768px) {
     padding-top: 20px;
     padding-bottom: 20px;
-    font-size: 1.5rem; /* Adjust the font size as needed */
+    font-size: xx-large; /* Adjust the font size as needed */
   }
 }
-
+.navbar-link{
+  @media screen and (max-width: 768px) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: xx-large;
+  }
+}
 // Card styles
 .card-title.my-auto {
   color: $accent-color;
@@ -29,7 +35,7 @@ $accent-color: white;
 
   // Adjust movie title for smaller screens
   @media screen and (max-width: 768px) {
-    font-size: 1.5rem; /* Adjust the font size as needed */
+    font-size: xx-large; /* Adjust the font size as needed */
   }
 }
 
