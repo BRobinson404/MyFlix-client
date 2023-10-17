@@ -9,19 +9,19 @@ $accent-color: white;
 
 .navigation-bar {
   background-color: $primary-color;
-
-  // Increase navigation bar size for smaller screens
+  
+  // Customize the navigation bar for smaller screens
   @media screen and (max-width: 768px) {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    font-size: xx-large; /* Adjust the font size as needed */
+    font-size: 1.5rem; // Adjust the font size as needed
+    padding-top: 20px; // Adjust the top padding as needed
+    padding-bottom: 20px; // Adjust the bottom padding as needed
   }
-}
-.navbar-link{
-  @media screen and (max-width: 768px) {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    font-size: x-large;
+
+  // Customize the links inside the navigation bar for smaller screens
+  .navbar-link {
+    @media screen and (max-width: 768px) {
+      font-size: 1.2rem; // Adjust the font size as needed
+    }
   }
 }
 // Card styles
@@ -60,10 +60,6 @@ $accent-color: white;
       color: $accent-color;
       text-decoration: none;
       transition: transform 0.3s ease-in-out;
-        // Adjust movie title for smaller screens
-  @media screen and (max-width: 768px) {
-    font-size: x-large; /* Adjust the font size as needed */
-  }
 
       &:hover {
         transform: scale(1.05);
