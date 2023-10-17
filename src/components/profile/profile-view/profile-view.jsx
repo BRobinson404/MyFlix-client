@@ -127,15 +127,15 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
               </Col>
   
               <Col className="deregister-btn-col text-end">
-  <Button variant="danger" onClick={onDeregister}>
-    Delete Account
-  </Button>
-</Col>
+                <Button variant="danger" onClick={onDeregister}>
+                  Delete Account
+                </Button>
+              </Col>
             </Row>
           </Form>
         </Col>
   
-        <Col xs={10} sm={8} md={6}>
+        <Col xs={12} md={6}>
           <h2>Favorite Movies</h2>
           {filteredMovies && filteredMovies.length === 0 ? (
             <p>No favorite movies found.</p>
