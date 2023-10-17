@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Navbar, Nav, Button, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+import "./navigation-bar.scss"
+
 export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
   const handleLogout = () => {
     onLoggedOut();
