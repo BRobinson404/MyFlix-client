@@ -26,6 +26,10 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
     setShowOffCanvas(false);
   };
 
+  const handleToggle = () => {
+    setShowOffCanvas((prev) => !prev);
+  };
+
   return (
     <>
       <Navbar id="custom-navigation-bar" className="navigation-bar" sticky="top" data-bs-theme="dark" expand="lg">
@@ -33,7 +37,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
           <Navbar.Brand as={Link} to="/" id="custom-navbar-brand">
             MyFlix
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="offcanvasNavbar" />
+          <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleToggle} />
           <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" placement="end" show={showOffCanvas} onHide={() => setShowOffCanvas(false)}>
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
