@@ -11,17 +11,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
   };
 
   const [showGenreFilter, setShowGenreFilter] = useState(false);
-  const [showOffCanvas, setShowOffCanvas] = useState(false);
-  const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(false);
 
-  const handleNavbarToggle = (isCollapsed) => {
-    if (isCollapsed) {
-      setShowOffCanvas(true);
-    } else {
-      setShowOffCanvas(false);
-    }
-    setIsNavbarCollapsed(isCollapsed);
-  };
 
   const handleGenreFilter = (selectedGenre) => {
     onGenreFilter(selectedGenre);
@@ -30,22 +20,27 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
 
   return (
     <>
+    {[false, 'sm', 'md', 'lg', 'xl', 'xxl'].map((expand) => (
     <Navbar
         id="custom-navigation-bar"
         className="navigation-bar"
         sticky="top"
         data-bs-theme="dark"
         expand="xl"
-        onToggle={(expanded) => handleNavbarToggle(!expanded)}
       >
+        <Container fluid>
   <Navbar.Brand as={Link} to="/" id="custom-navbar-brand">
     MyFlix
   </Navbar.Brand>
-  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-</Navbar>
- <Offcanvas show={showOffCanvas} onHide={() => setShowOffCanvas(false)} placement="end">
+  <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+
+ <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-${expand}`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+              placement="end"
+            >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+        <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className="me-auto">
@@ -78,7 +73,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
           </Nav>
           {user && (
             <Nav id="custom-dropdown-menu">
-              <Dropdown show={showGenreFilter} onToggle={(isOpen) => setShowGenreFilter(isOpen)}>
+              <Dropdown>
                 <Dropdown.Toggle as={Button} variant="secondary" id="dropdown-genre">
                   Filter Genres
                 </Dropdown.Toggle>
@@ -98,7 +93,10 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
             </Nav>
           )}
         </Offcanvas.Body>
-      </Offcanvas>
+      </Navbar.Offcanvas>
+      </Container>
+      </Navbar>
+    ))}
     </>
   );
 };
