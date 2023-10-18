@@ -78,7 +78,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
     )}
   </Navbar.Collapse>
 </Navbar>
-<Offcanvas show={showOffCanvas} onHide={() => setShowOffCanvas(false)}>
+ <Offcanvas show={showOffCanvas} onHide={() => setShowOffCanvas(false)} placement="end">
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Offcanvas</Offcanvas.Title>
         </Offcanvas.Header>
