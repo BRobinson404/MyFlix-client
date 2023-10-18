@@ -40,7 +40,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
           <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleToggle} />
           <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" placement="end" show={showOffCanvas} onHide={() => setShowOffCanvas(false)}>
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
+              <Offcanvas.Title font aria-setsize={lg} id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="me-auto">
