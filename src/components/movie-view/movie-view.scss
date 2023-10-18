@@ -39,15 +39,15 @@
           flex-direction: column;
           align-items: center;
 
-          .title {
+          .movie-title {
             font-size: 32px;
             margin-bottom: 10px;
           }
 
-          .description,
-          .genre,
-          .director,
-          .director-bio {
+          .movie-description,
+          .movie-genre,
+          .movie-director,
+          .movie-director-bio {
             font-size: 18px;
             margin-bottom: 10px;
           }
@@ -55,13 +55,15 @@
           .button-container {
             display: flex;
             justify-content: center;
+            align-items: flex-end;
+            margin-top: auto;
 
-            .btn {
-              margin: 0 5px;
+            .back-button {
+              margin-right: 5px;
             }
 
             .favorite-button {
-              margin-top: 20px;
+              margin-left: 5px;
               font-size: 20px;
               color: black;
             }
