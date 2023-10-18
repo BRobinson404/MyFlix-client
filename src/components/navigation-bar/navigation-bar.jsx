@@ -30,8 +30,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
 
   return (
     <>
-    {isNavbarCollapsed ? null : (
-      <Navbar
+    <Navbar
         id="custom-navigation-bar"
         className="navigation-bar"
         sticky="top"
@@ -39,31 +38,89 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
         expand="xl"
         onToggle={(expanded) => handleNavbarToggle(!expanded)}
       >
-        <Navbar.Brand as={Link} to="/" id="custom-navbar-brand">
-          MyFlix
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+  <Navbar.Brand as={Link} to="/" id="custom-navbar-brand">
+    MyFlix
+  </Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+  {isNavbarCollapsed ? null : (
+    <Nav className="me-auto">
+      {!user && (
+        <>
+          <Nav.Link as={Link} to="/login" className="navbar-link" id="custom-nav-link-home">
+            Home
+          </Nav.Link>
+          <Nav.Link as={Link} to="/login" id="custom-nav-link-login">
+            Login
+          </Nav.Link>
+          <Nav.Link as={Link} to="/signup" id="custom-nav-link-signup">
+            Sign Up
+          </Nav.Link>
+        </>
+      )}
+      {user && (
+        <>
+          <Nav.Link as={Link} to="/" className="navbar-link" id="custom-nav-link-home">
+            Home
+          </Nav.Link>
+          <Nav.Link as={Link} to={`/users/${user.Username}`} id="custom-nav-link-profile">
+            Profile
+          </Nav.Link>
+          <Nav.Link as={Link} to="/login" onClick={handleLogout} id="custom-nav-link-logout">
+            Logout
+          </Nav.Link>
+        </>
+      )}
+    </Nav>
+  )}
+    {user && (
+      <Nav id="custom-dropdown-menu">
+        <Dropdown show={showGenreFilter} onToggle={(isOpen) => setShowGenreFilter(isOpen)}>
+          <Dropdown.Toggle as={Button} variant="secondary" id="dropdown-genre">
+            Filter Genres
+          </Dropdown.Toggle>
+          <Dropdown.Menu id="custom-dropdown-menu-items">
+                <Dropdown.Item onClick={() => handleGenreFilter('')}>All Genres</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleGenreFilter('Crime')}>Crime</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleGenreFilter('Science Fiction')}>Science Fiction</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleGenreFilter('Comedy-drama')}>Comedy-drama</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleGenreFilter('Superhero')}>Superhero</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleGenreFilter('Action')}>Action</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleGenreFilter('Drama')}>Drama</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleGenreFilter('Horror')}>Horror</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleGenreFilter('Thriller')}>Thriller</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleGenreFilter('Romance')}>Romance</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Nav>
+    )}
+  </Navbar.Collapse>
+</Navbar>
+ <Offcanvas show={showOffCanvas} onHide={() => setShowOffCanvas(false)} placement="end">
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
           <Nav className="me-auto">
             {!user && (
               <>
-                <Nav.Link as={Link} to="/login" className="navbar-link" id="custom-nav-link-home">
+                <Nav.Link as={Link} to="/login">
                   Home
                 </Nav.Link>
                 <Nav.Link as={Link} to="/login" id="custom-nav-link-login">
-                  Login
+                   Login
                 </Nav.Link>
-                <Nav.Link as={Link} to="/signup" id="custom-nav-link-signup">
-                  Sign Up
+                 <Nav.Link as={Link} to="/signup" id="custom-nav-link-signup">
+                   Sign Up
                 </Nav.Link>
               </>
             )}
             {user && (
               <>
                 <Nav.Link as={Link} to="/" className="navbar-link" id="custom-nav-link-home">
-                  Home
+                   Home
                 </Nav.Link>
-                <Nav.Link as={Link} to={`/users/${user.Username}`} id="custom-nav-link-profile">
+                <Nav.Link as={Link} to={`/users/${user.Username}`}>
                   Profile
                 </Nav.Link>
                 <Nav.Link as={Link} to="/login" onClick={handleLogout} id="custom-nav-link-logout">
@@ -93,65 +150,8 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
               </Dropdown>
             </Nav>
           )}
-        </Navbar.Collapse>
-      </Navbar>
-    )}
-    <Offcanvas show={showOffCanvas} onHide={() => setShowOffCanvas(false)} placement="end">
-      <Offcanvas.Header closeButton>
-        <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-      </Offcanvas.Header>
-      <Offcanvas.Body>
-        <Nav className="me-auto">
-          {!user && (
-            <>
-              <Nav.Link as={Link} to="/login">
-                Home
-              </Nav.Link>
-              <Nav.Link as={Link} to="/login" id="custom-nav-link-login">
-                Login
-              </Nav.Link>
-              <Nav.Link as={Link} to="/signup" id="custom-nav-link-signup">
-                Sign Up
-              </Nav.Link>
-            </>
-          )}
-          {user && (
-            <>
-              <Nav.Link as={Link} to="/" className="navbar-link" id="custom-nav-link-home">
-                Home
-              </Nav.Link>
-              <Nav.Link as={Link} to={`/users/${user.Username}`}>
-                Profile
-              </Nav.Link>
-              <Nav.Link as={Link} to="/login" onClick={handleLogout} id="custom-nav-link-logout">
-                Logout
-              </Nav.Link>
-            </>
-          )}
-        </Nav>
-        {user && (
-          <Nav id="custom-dropdown-menu">
-            <Dropdown show={showGenreFilter} onToggle={(isOpen) => setShowGenreFilter(isOpen)}>
-              <Dropdown.Toggle as={Button} variant="secondary" id="dropdown-genre">
-                Filter Genres
-              </Dropdown.Toggle>
-              <Dropdown.Menu id="custom-dropdown-menu-items">
-                <Dropdown.Item onClick={() => handleGenreFilter('')}>All Genres</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Crime')}>Crime</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Science Fiction')}>Science Fiction</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Comedy-drama')}>Comedy-drama</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Superhero')}>Superhero</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Action')}>Action</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Drama')}>Drama</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Horror')}>Horror</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Thriller')}>Thriller</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleGenreFilter('Romance')}>Romance</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Nav>
-        )}
-      </Offcanvas.Body>
-    </Offcanvas>
+        </Offcanvas.Body>
+      </Offcanvas>
     </>
   );
 };
