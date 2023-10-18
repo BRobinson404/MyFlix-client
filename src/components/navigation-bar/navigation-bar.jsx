@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navbar, Nav, Button, Dropdown, Offcanvas } from 'react-bootstrap';
+import { Navbar, Nav, Button, Dropdown, Offcanvas, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import "./navigation-bar.scss"
