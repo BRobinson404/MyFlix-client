@@ -11,6 +11,8 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
   };
 
   const [showGenreFilter, setShowGenreFilter] = useState(false);
+  const [showOffCanvas, setShowOffCanvas] = useState(false);
+
 
   const handleGenreFilter = (selectedGenre) => {
     onGenreFilter(selectedGenre);
