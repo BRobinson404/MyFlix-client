@@ -265,7 +265,7 @@ export const MainView = () => {
               {storedUser && movies.length === 0 ? (
                 <Col>The list is empty!</Col>
               ) : storedUser ? (
-                <Col xs={6}>
+                <Col>
                   <MovieView
                     movies={movies}
                     user={user}
