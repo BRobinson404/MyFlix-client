@@ -32,10 +32,10 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
 
   return (
     <>
-      <Navbar id="custom-navigation-bar" className="navigation-bar" sticky="top" data-bs-theme="dark" expand="lg">
+      <Navbar className="navigation-bar" sticky="top" data-bs-theme="dark" expand="lg">
         <Container fluid>
           <Navbar.Brand as={Link} to="/" id="custom-navbar-brand">
-            MyFlix
+            myFlix
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleToggle} />
           <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" placement="end" show={showOffCanvas} onHide={() => setShowOffCanvas(false)}>
