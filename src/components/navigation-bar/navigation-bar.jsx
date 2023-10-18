@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Button, Dropdown, Offcanvas, Container } from 'react-bootstrap';
-import { Link, useLocation } from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 
 import "./navigation-bar.scss"
 
