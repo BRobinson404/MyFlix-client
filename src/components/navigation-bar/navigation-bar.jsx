@@ -42,7 +42,6 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
     MyFlix
   </Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav">
   {isNavbarCollapsed ? null : (
     <Nav className="me-auto">
       {!user && (
@@ -94,7 +93,6 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
         </Dropdown>
       </Nav>
     )}
-  </Navbar.Collapse>
 </Navbar>
  <Offcanvas show={showOffCanvas} onHide={() => setShowOffCanvas(false)} placement="end">
         <Offcanvas.Header closeButton>
