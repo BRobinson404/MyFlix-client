@@ -12,7 +12,16 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
 
   const [showGenreFilter, setShowGenreFilter] = useState(false);
   const [showOffCanvas, setShowOffCanvas] = useState(false);
+  const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(false);
 
+  const handleNavbarToggle = (isCollapsed) => {
+    if (isCollapsed) {
+      setShowOffCanvas(true);
+    } else {
+      setShowOffCanvas(false);
+    }
+    setIsNavbarCollapsed(isCollapsed);
+  };
 
   const handleGenreFilter = (selectedGenre) => {
     onGenreFilter(selectedGenre);
@@ -21,7 +30,14 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
 
   return (
     <>
-    <Navbar id="custom-navigation-bar" className="navigation-bar" sticky="top" data-bs-theme="dark" expand="xl">
+    <Navbar
+        id="custom-navigation-bar"
+        className="navigation-bar"
+        sticky="top"
+        data-bs-theme="dark"
+        expand="xl"
+        onToggle={(expanded) => handleNavbarToggle(!expanded)}
+      >
   <Navbar.Brand as={Link} to="/" id="custom-navbar-brand">
     MyFlix
   </Navbar.Brand>
