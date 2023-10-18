@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Button, Dropdown, Offcanvas, Container } from 'react-bootstrap';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory  } from 'react-router-dom';
 
 import "./navigation-bar.scss"
 
 export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
+  const history = useHistory();
+
   const handleLogout = () => {
     onLoggedOut();
     window.location.href = '/login';
@@ -14,11 +16,16 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
   const hideGenreDropdown = location.pathname.includes('profile')
 
   const [showGenreFilter, setShowGenreFilter] = useState(false);
-
+  const [showOffCanvas, setShowOffCanvas] = useState(false);
 
   const handleGenreFilter = (selectedGenre) => {
     onGenreFilter(selectedGenre);
     setShowGenreFilter(false);
+    setShowOffCanvas(false);
+  };
+
+  const handleLinkClick = () => {
+    setShowOffCanvas(false);
   };
 
   return (
@@ -28,7 +35,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
         className="navigation-bar"
         sticky="top"
         data-bs-theme="dark"
-        expand="xl"
+        expand="lg"
       >
         <Container fluid>
           <Navbar.Brand as={Link} to="/" id="custom-navbar-brand">
@@ -39,6 +46,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
             id="offcanvasNavbar"
             aria-labelledby="offcanvasNavbarLabel"
             placement="end"
+            onHide={handleLinkClick}
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
