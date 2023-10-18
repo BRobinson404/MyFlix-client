@@ -43,6 +43,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
   </Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
+  {isNavbarCollapsed ? null : (
     <Nav className="me-auto">
       {!user && (
         <>
@@ -71,6 +72,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
         </>
       )}
     </Nav>
+  )}
     {user && (
       <Nav id="custom-dropdown-menu">
         <Dropdown show={showGenreFilter} onToggle={(isOpen) => setShowGenreFilter(isOpen)}>
