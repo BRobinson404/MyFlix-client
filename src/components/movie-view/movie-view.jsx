@@ -20,11 +20,11 @@ export const MovieView = ({ movies, user, onAddFavorite }) => {
     <div className="MovieView">
     <div className="movie-container">
       <Row className="movie-row">
-        <Col>
+        <Col className='image-col'>
           <img src={movie.ImagePath} className="img-fluid" alt="Movie Poster" />
         </Col>
 
-        <Col>
+        <Col className='info-col'>
           <div>
             <h2>{movie.Title}</h2>
             <p>Description: {movie.Descriptions}</p>
