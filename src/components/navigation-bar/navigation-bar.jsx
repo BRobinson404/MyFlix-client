@@ -10,6 +10,9 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
     window.location.href = '/login';
   };
 
+  const location = useLocation();
+  const hideGenreDropdown = location.pathname.includes('profile')
+
   const [showGenreFilter, setShowGenreFilter] = useState(false);
 
 
@@ -69,7 +72,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
                   </>
                 )}
               </Nav>
-              {user && (
+              {!hideGenreDropdown && user && (
                 <Nav id="custom-dropdown-menu">
                   <Dropdown>
                     <Dropdown.Toggle as={Button} variant="secondary" id="dropdown-genre">
