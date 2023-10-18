@@ -42,7 +42,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
             <Offcanvas.Header closeButton>
               <Offcanvas.Title font aria-setsize={1} id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
             </Offcanvas.Header>
-            <Offcanvas.Body>
+            <Offcanvas.Body className="custom-offcanvas-body">
               <Nav className="me-auto">
                 {!user && (
                   <>
