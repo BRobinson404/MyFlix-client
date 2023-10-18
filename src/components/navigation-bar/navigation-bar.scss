@@ -1,0 +1,20 @@
+// navigation-bar.scss
+
+.navigation-bar {
+  .navbar-brand {
+    font-size: 40pt;
+    padding: 20px; // Adjust the padding as desired
+  }
+
+  .offcanvas {
+    .nav-link {
+      font-size: 16px; // Adjust the font size for the links in the offcanvas
+    }
+
+    .dropdown-menu {
+      .dropdown-item {
+        font-size: 16px; // Adjust the font size for the dropdown items in the offcanvas
+      }
+    }
+  }
+}
