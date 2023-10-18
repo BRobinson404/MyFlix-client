@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Button, Dropdown, Offcanvas, Container } from 'react-bootstrap';
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import "./navigation-bar.scss"
 
 export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
-  const history = useHistory();
-
   const handleLogout = () => {
     onLoggedOut();
     window.location.href = '/login';
