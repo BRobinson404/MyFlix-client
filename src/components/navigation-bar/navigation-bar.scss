@@ -1,17 +1,17 @@
 $primary-color: #202020;
 $accent-color: white;
 
-@media only screen and (min-width: 576px) {
-  #custom-navigation-bar.navbar.navbar-dark {
-    .navbar-collapse.collapse#basic-navbar-nav {
-      font-size: 2.5rem;
+// navigation-bar.scss
 
-      .navbar-link.nav-link,
-      #custom-nav-link-home.navbar-link.nav-link,
-      #custom-nav-link-profile.nav-link,
-      #custom-nav-link-logout.nav-link {
-        font-size: 2.5rem;
-      }
-    }
+// Define the default font size
+.navigation-bar {
+  font-size: 20px; // Adjust the font size to your preference
+}
+
+// Media query for smaller navbar sizes
+@media screen and (max-width: 991px) {
+  .navigation-bar {
+    font-size: 40px; // Increase the font size for smaller navbar screens
   }
 }
+
