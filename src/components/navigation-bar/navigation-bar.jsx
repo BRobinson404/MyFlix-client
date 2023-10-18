@@ -18,7 +18,7 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
 
   const handleGenreFilter = (selectedGenre) => {
     onGenreFilter(selectedGenre);
-    setShowGenreFilter(false);
+    setShowGenreFilter(true);
   };
 
   return (
