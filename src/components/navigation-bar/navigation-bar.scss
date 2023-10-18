@@ -6,3 +6,15 @@
     padding: 20px; // Adjust the padding as desired
   }
 }
+
+.custom-offcanvas-body {
+  .nav-link {
+    font-size: 16px; // Adjust the font size for the links in the off-canvas
+  }
+
+  .dropdown-menu {
+    .dropdown-item {
+      font-size: 16px; // Adjust the font size for the dropdown items in the off-canvas
+    }
+  }
+}
