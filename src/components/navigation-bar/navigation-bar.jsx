@@ -25,8 +25,8 @@ export const NavigationBar = ({ user, onLoggedOut, onGenreFilter }) => {
   <Navbar.Brand as={Link} to="/" id="custom-navbar-brand">
     MyFlix
   </Navbar.Brand>
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="me-auto">
       {!user && (
         <>
