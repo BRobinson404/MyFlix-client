@@ -20,55 +20,8 @@ $accent-color: white;
 
 // Form styles
 
-.update-btn-col,
-.deregister-btn-col {
-  padding-top: 50px;
-}
-
 .login-form {
   padding: 1.5rem;
   box-shadow: 0px 0px 15px rgba(0, 123, 255, 0.3);
   border-radius: 5px;
-}
-
-
-// Favorite list styles
-.favorite-list {
-  list-style-type: none;
-  padding: 0;
-
-  .list-group-item {
-    display: flex;
-    align-items: center;
-    background-color: $primary-color;
-    border: none;
-    padding: 8px 0;
-
-    a {
-      color: $accent-color;
-      text-decoration: none;
-      transition: transform 0.3s ease-in-out;
-
-      &:hover {
-        transform: scale(1.05);
-      }
-    }
-
-    button {
-      margin-left: 0.5rem;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-    }
-  }
-}
-
-// Button styles
-.favorite-button.btn.btn-primary {
-  color: $accent-color;
 }
