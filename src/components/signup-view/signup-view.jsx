@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Row, Col, Button, Container } from 'react-bootstrap';
+import './signup-view.scss';
 
 export const SignupView = () => {
   const [username, setUsername] = useState('');
