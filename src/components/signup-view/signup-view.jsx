@@ -36,8 +36,8 @@ export const SignupView = () => {
   };
 
   return (
-    <Container className="mt-5">
-      <Row className="justify-content-center">
+    <Container>
+      <Row>
         <Col xs={10} sm={8} md={6} lg={4}>
           <Form onSubmit={handleSubmit} className= "signup-form">
             <h2 className="mb-4 text-center">Sign Up</h2>
@@ -83,11 +83,11 @@ export const SignupView = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit" className="w-100 mt-3">
+            <Button variant="primary" type="submit">
               Submit
             </Button>
 
-            <p className="mt-3 text-center">
+            <p>
               Already have an account? <Link to="/login">Login</Link>
             </p>
           </Form>
