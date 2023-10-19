@@ -5,28 +5,31 @@
   
     .form-group {
       margin-bottom: 20px;
-    }
   
-    .form-label {
-      font-weight: bold;
-    }
+      .form-label {
+        font-weight: bold;
+      }
   
-    .form-control {
-      border-radius: 0;
+      .form-control {
+        border-radius: 0;
+      }
     }
   
     .btn-primary {
+      width: 100%;
+      margin-top: 20px;
       background-color: #007bff;
       border-color: #007bff;
-    }
   
-    .btn-primary:hover {
-      background-color: #0056b3;
-      border-color: #0056b3;
+      &:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+      }
     }
   
     .text-center {
       text-align: center;
+      margin-top: 20px;
     }
   }
   
