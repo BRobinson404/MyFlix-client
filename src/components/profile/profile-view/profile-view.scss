@@ -20,23 +20,28 @@
     padding: 0;
     margin-top: 20px; // Add margin at the top
 
-    .list-group-item {
-      display: flex;
-      align-items: center;
-      background-color: #202020;
-      border: none;
-      padding: 8px 0px;
-
-      a {
-        color: white;
-        text-decoration: none;
-        transition: transform 0.3s ease-in-out;
-        font-size: large;
-
-        &:hover {
-          transform: scale(1.05);
+    .favorite-list {
+      list-style-type: none;
+      padding: 0;
+    
+      .list-group-item {
+        display: flex;
+        align-items: center;
+        background-color: $primary-color;
+        border: none;
+        padding: 8px 0;
+    
+        a {
+          color: $accent-color;
+          text-decoration: none;
+          transition: transform 0.3s ease-in-out;
+    
+          &:hover {
+            transform: scale(1.05);
+          }
         }
       }
+    }
 
       .trash-can-icon {
         width: 24px;
@@ -65,5 +70,3 @@
       }
     }
   }
-
-}
