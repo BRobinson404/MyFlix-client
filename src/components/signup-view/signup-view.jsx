@@ -37,7 +37,7 @@ export const SignupView = () => {
 
   return (
     <Container>
-      <Row>
+      <Row className="justify-content-center">
         <Col xs={10} sm={8} md={6} lg={4}>
           <Form onSubmit={handleSubmit} className= "signup-form">
             <h2 className="mb-4 text-center">Sign Up</h2>
