@@ -38,7 +38,7 @@ export const SignupView = () => {
     <Container className="mt-5">
       <Row className="justify-content-center">
         <Col xs={10} sm={8} md={6} lg={4}>
-          <Form className= "profile-form" onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} className= "signup-form">
             <h2 className="mb-4 text-center">Sign Up</h2>
 
             <Form.Group controlId="formUsername">
