@@ -25,17 +25,25 @@ export const MovieView = ({ movies, user, onAddFavorite }) => {
         </Col>
 
         <Col className='info-col'>
-          <div>
-            <h2>{movie.Title}</h2>
-            <p className="info-text-bold">Description:</p>
-            <p className="info-text">{movie.Descriptions}</p>
-            <p className="info-text-bold">Genre:</p>
-            <p className="info-text">{movie.Genre.Name}</p>
-            <p className="info-text-bold">Director:</p>
-            <p className="info-text">{movie.Director.Name}</p>
-            <p className="info-text-bold">Director Bio:</p>
-            <p className="info-text">{movie.Director.Bio}</p>
-            <div>
+              <div>
+                <h2>{movie.Title}</h2>
+                <p>
+                  <span className="info-text-bold">Description:</span>{" "}
+                  <span className="info-text">{movie.Descriptions}</span>
+                </p>
+                <p>
+                  <span className="info-text-bold">Genre:</span>{" "}
+                  <span className="info-text">{movie.Genre.Name}</span>
+                </p>
+                <p>
+                  <span className="info-text-bold">Director:</span>{" "}
+                  <span className="info-text">{movie.Director.Name}</span>
+                </p>
+                <p>
+                  <span className="info-text-bold">Director Bio:</span>{" "}
+                  <span className="info-text">{movie.Director.Bio}</span>
+                </p>
+              <div>
               <Link to="/movies" className="btn btn-primary">
                 Back
               </Link>
