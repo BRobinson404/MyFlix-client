@@ -3,10 +3,8 @@ $primary-color: #202020;
 $accent-color: white;
 
 .profile-container {
-  * {
-    background-color: $primary-color;
-    color: $accent-color;
-  }
+  background-color: $primary-color;
+  color: $accent-color;
 
   .profile-form,
   .signup-form {
@@ -24,29 +22,22 @@ $accent-color: white;
     padding: 0;
     margin-top: 20px; // Add margin at the top
 
-    .favorite-list {
-      list-style-type: none;
-      padding: 0;
-    
-      .list-group-item {
-        display: flex;
-        align-items: center;
-        background-color: $primary-color;
-        border: none;
+    .list-group-item {
+      display: flex;
+      align-items: center;
+      background-color: $primary-color;
+      border: none;
+      padding: 8px 0;
+
+      a {
+        color: $accent-color;
         text-decoration: none;
-        padding: 8px 0;
-    
-        a {
-          color: $accent-color;
-          text-decoration: none;
-          transition: transform 0.3s ease-in-out;
-    
-          &:hover {
-            transform: scale(1.05);
-          }
+        transition: transform 0.3s ease-in-out;
+
+        &:hover {
+          transform: scale(1.05);
         }
       }
-    }
 
       .trash-can-icon {
         width: 24px;
@@ -75,3 +66,4 @@ $accent-color: white;
       }
     }
   }
+}
