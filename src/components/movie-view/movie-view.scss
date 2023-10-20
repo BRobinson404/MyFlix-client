@@ -48,10 +48,12 @@
   border-radius: 10px;
 }
 
-.info-text {
-  font-weight: normal;
-}
-
 .info-text-bold {
   font-weight: bold;
+  display: inline;
+}
+
+.info-text {
+  font-weight: normal;
+  display: inline;
 }
