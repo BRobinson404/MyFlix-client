@@ -1,7 +1,11 @@
+// General styles
+$primary-color: #202020;
+$accent-color: white;
+
 .profile-container {
   * {
-    background-color: #202020;
-    color: white;
+    background-color: $primary-color;
+    color: $accent-color;
   }
 
   .profile-form,
@@ -50,7 +54,7 @@
         margin-right: 0.5rem;
         cursor: pointer;
         filter: brightness(120%); // Adjust the brightness to make it more pronounced
-        background-color: white;
+        background-color: $accent-color;
         // Red border
         border: 2px solid red;
         border-radius: 50%;
