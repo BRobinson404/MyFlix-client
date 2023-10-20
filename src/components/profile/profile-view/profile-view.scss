@@ -6,9 +6,8 @@ $accent-color: white;
   background-color: $primary-color;
   color: $accent-color;
 
-  .profile-form,
-  .signup-form {
-    width: 50%;
+  .profile-form {
+    width: 70%;
     margin-bottom: 20px; // Add margin at the bottom
   }
 
