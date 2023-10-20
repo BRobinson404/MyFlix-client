@@ -89,6 +89,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                placeholder="Username"
               />
             </Form.Group>
   
@@ -98,6 +99,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
               />
             </Form.Group>
   
@@ -107,6 +109,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                placeholder='Email'
               />
             </Form.Group>
   
@@ -116,6 +119,7 @@ export const ProfileView = ({ user, movies, onUpdateUser, onDeregister}) => {
                 type="date"
                 value={birthday ? birthday.split("T")[0] : ""}
                 onChange={(e) => setBirthday(e.target.value)}
+                placeholder="Date of Birth"
               />
             </Form.Group>
   
